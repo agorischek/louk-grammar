@@ -20,5 +20,9 @@
     "url": "https://github.com/agorischek/louk-grammar/issues"
   },
   "homepage": "https://louk-lang.org",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "simple-plist": "^0.3.0",
+    "yamljs": "^0.3.0"
+  }
 }
