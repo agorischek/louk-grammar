@@ -1,0 +1,47 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: Louk
+scopeName: text.html.vue.louk
+fileTypes: [louk]
+uuid: 444bb94d-ce8b-415d-8683-534f8524ee5a
+
+patterns:
+
+- comment: A comment
+  name: comment
+  match: ^\s*//.*$
+  captures:
+    '1': {name: entity.other.attribute-name}
+
+- comment: A static shorthand attribute
+  begin: ^\s*([>\.#])(\S*)
+  beginCaptures:
+    '1': {name: entity.other.attribute-name}
+    '2': {name: string}
+  end: \s
+
+- comment: A static  attribute
+  begin: ^\s*([~])(\S*)
+  beginCaptures:
+    '1': {name: string}
+    '2': {name: entity.other.attribute-name}
+  end: $
+  patterns:
+  - name: string
+    match: .*
+
+- comment: A directive attribute
+  name: variable.function
+  match: ^\s*([:@-])(\S*)\s+(.*)
+  captures:
+    '1': {name: punctuation.definition.tag.begin.html}
+    '2': {name: comment}
+    '3': {name: text.html}
+
+- comment: Element
+  begin: ^\s*(\S*)\s*
+  beginCaptures:
+    '1': {name: entity.name.tag}
+  end: $
+
+...
