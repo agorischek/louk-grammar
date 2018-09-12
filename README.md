@@ -1,1 +1,2 @@
-# louk-grammar
+# Louk Grammar
+Syntax highlighting for Louk
