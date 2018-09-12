@@ -8,40 +8,60 @@ uuid: 444bb94d-ce8b-415d-8683-534f8524ee5a
 patterns:
 
 - comment: A comment
-  name: comment
-  match: ^\s*//.*$
+  name: comment.line.louk
+  begin: ^\s*(//)(.*)
+  end: $
   captures:
-    '1': {name: entity.other.attribute-name}
+    '1': {name: punctuation.comment.begin.louk}
+    '2': {name: comment.content.louk}
 
 - comment: A static shorthand attribute
+  name: meta.attribute-with-value.louk
   begin: ^\s*([>\.#])(\S*)
   beginCaptures:
-    '1': {name: entity.other.attribute-name}
-    '2': {name: string}
+      #Attribute name is used for markup like "#" since those characters represent attribute names.
+    '1': {name: entity.other.attribute-name.louk}
+    '2': {name: string.louk}
   end: \s
 
-- comment: A static  attribute
+- comment: A static attribute
+  name: meta.attribute-with-value.louk
   begin: ^\s*([~])(\S*)
   beginCaptures:
-    '1': {name: string}
-    '2': {name: entity.other.attribute-name}
+      #The static attribute marker is one of the few aspects of Louk grammar that does not map to an existing Vue construct.
+    '1': {name: punctuation.definition.attribute.static.louk}
+    '2': {name: entity.other.attribute-name.louk}
   end: $
   patterns:
-  - name: string
-    match: .*
+  - include: source.js
 
 - comment: A directive attribute
-  name: variable.function
-  match: ^\s*([:@-])(\S*)\s+(.*)
-  captures:
-    '1': {name: punctuation.definition.tag.begin.html}
-    '2': {name: comment}
-    '3': {name: text.html}
-
-- comment: Element
-  begin: ^\s*(\S*)\s*
-  beginCaptures:
-    '1': {name: entity.name.tag}
+  name: meta.directive.vue.louk
+  begin: ^\s*([:@-])(\S+)\s+
   end: $
+  beginCaptures:
+    '1': {name: punctuation.separator.key-value.html.louk}
+    '2': {name: entity.other.attribute-name.directive.louk}
+  patterns:
+  - include: source.js
+
+    #Inline HTML falls back to default Vue styling.
+- comment: An HTML line
+  name: comment
+  begin: (?=^\s*<)
+  end: $
+  patterns:
+  - include: text.html.vue
+
+# Everything else is assumed to be an element.
+# This rule is very generic, and must come last!
+- comment: An element
+  name: meta.tag.any.html.louk
+  begin: ^\s*(\S*)\s*
+  end: $
+  beginCaptures:
+    '1': {name: entity.name.tag.html.louk}
+  patterns:
+  - include: source.js
 
 ...

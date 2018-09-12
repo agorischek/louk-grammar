@@ -18,21 +18,30 @@
         <key>comment</key>
         <string>A comment</string>
         <key>name</key>
-        <string>comment</string>
-        <key>match</key>
-        <string>^\s*//.*$</string>
+        <string>comment.line.louk</string>
+        <key>begin</key>
+        <string>^\s*(//)(.*)</string>
+        <key>end</key>
+        <string>$</string>
         <key>captures</key>
         <dict>
           <key>1</key>
           <dict>
             <key>name</key>
-            <string>entity.other.attribute-name</string>
+            <string>punctuation.comment.begin.louk</string>
+          </dict>
+          <key>2</key>
+          <dict>
+            <key>name</key>
+            <string>comment.content.louk</string>
           </dict>
         </dict>
       </dict>
       <dict>
         <key>comment</key>
         <string>A static shorthand attribute</string>
+        <key>name</key>
+        <string>meta.attribute-with-value.louk</string>
         <key>begin</key>
         <string>^\s*([&gt;\.#])(\S*)</string>
         <key>beginCaptures</key>
@@ -40,12 +49,12 @@
           <key>1</key>
           <dict>
             <key>name</key>
-            <string>entity.other.attribute-name</string>
+            <string>entity.other.attribute-name.louk</string>
           </dict>
           <key>2</key>
           <dict>
             <key>name</key>
-            <string>string</string>
+            <string>string.louk</string>
           </dict>
         </dict>
         <key>end</key>
@@ -53,7 +62,9 @@
       </dict>
       <dict>
         <key>comment</key>
-        <string>A static  attribute</string>
+        <string>A static attribute</string>
+        <key>name</key>
+        <string>meta.attribute-with-value.louk</string>
         <key>begin</key>
         <string>^\s*([~])(\S*)</string>
         <key>beginCaptures</key>
@@ -61,12 +72,12 @@
           <key>1</key>
           <dict>
             <key>name</key>
-            <string>string</string>
+            <string>punctuation.definition.attribute.static.louk</string>
           </dict>
           <key>2</key>
           <dict>
             <key>name</key>
-            <string>entity.other.attribute-name</string>
+            <string>entity.other.attribute-name.louk</string>
           </dict>
         </dict>
         <key>end</key>
@@ -74,10 +85,8 @@
         <key>patterns</key>
         <array>
           <dict>
-            <key>name</key>
-            <string>string</string>
-            <key>match</key>
-            <string>.*</string>
+            <key>include</key>
+            <string>source.js</string>
           </dict>
         </array>
       </dict>
@@ -85,43 +94,73 @@
         <key>comment</key>
         <string>A directive attribute</string>
         <key>name</key>
-        <string>variable.function</string>
-        <key>match</key>
-        <string>^\s*([:@-])(\S*)\s+(.*)</string>
-        <key>captures</key>
-        <dict>
-          <key>1</key>
-          <dict>
-            <key>name</key>
-            <string>punctuation.definition.tag.begin.html</string>
-          </dict>
-          <key>2</key>
-          <dict>
-            <key>name</key>
-            <string>comment</string>
-          </dict>
-          <key>3</key>
-          <dict>
-            <key>name</key>
-            <string>text.html</string>
-          </dict>
-        </dict>
-      </dict>
-      <dict>
-        <key>comment</key>
-        <string>Element</string>
+        <string>meta.directive.vue.louk</string>
         <key>begin</key>
-        <string>^\s*(\S*)\s*</string>
+        <string>^\s*([:@-])(\S+)\s+</string>
+        <key>end</key>
+        <string>$</string>
         <key>beginCaptures</key>
         <dict>
           <key>1</key>
           <dict>
             <key>name</key>
-            <string>entity.name.tag</string>
+            <string>punctuation.separator.key-value.html.louk</string>
+          </dict>
+          <key>2</key>
+          <dict>
+            <key>name</key>
+            <string>entity.other.attribute-name.directive.louk</string>
           </dict>
         </dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>source.js</string>
+          </dict>
+        </array>
+      </dict>
+      <dict>
+        <key>comment</key>
+        <string>An HTML line</string>
+        <key>name</key>
+        <string>comment</string>
+        <key>begin</key>
+        <string>(?=^\s*&lt;)</string>
         <key>end</key>
         <string>$</string>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>text.html.vue</string>
+          </dict>
+        </array>
+      </dict>
+      <dict>
+        <key>comment</key>
+        <string>An element</string>
+        <key>name</key>
+        <string>meta.tag.any.html.louk</string>
+        <key>begin</key>
+        <string>^\s*(\S*)\s*</string>
+        <key>end</key>
+        <string>$</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>entity.name.tag.html.louk</string>
+          </dict>
+        </dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>source.js</string>
+          </dict>
+        </array>
       </dict>
     </array>
   </dict>
