@@ -86,7 +86,7 @@
         <array>
           <dict>
             <key>name</key>
-            <string>string</string>
+            <string>string.louk</string>
             <key>match</key>
             <string>.*</string>
           </dict>
@@ -141,11 +141,11 @@
       </dict>
       <dict>
         <key>comment</key>
-        <string>An element</string>
+        <string>An element with static comment</string>
         <key>name</key>
         <string>meta.tag.any.html.louk</string>
         <key>begin</key>
-        <string>^\s*([^\s~]*)(~?)</string>
+        <string>^\s*([^\s~]*)(~)</string>
         <key>end</key>
         <string>$</string>
         <key>beginCaptures</key>
@@ -159,6 +159,33 @@
           <dict>
             <key>name</key>
             <string>punctuation.definition.tag.static.louk</string>
+          </dict>
+        </dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>name</key>
+            <string>string.louk</string>
+            <key>match</key>
+            <string>.*</string>
+          </dict>
+        </array>
+      </dict>
+      <dict>
+        <key>comment</key>
+        <string>An element with dynamic content</string>
+        <key>name</key>
+        <string>meta.tag.any.html.louk</string>
+        <key>begin</key>
+        <string>^\s*([^\s~]*)</string>
+        <key>end</key>
+        <string>$</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>entity.name.tag.html.louk</string>
           </dict>
         </dict>
         <key>patterns</key>

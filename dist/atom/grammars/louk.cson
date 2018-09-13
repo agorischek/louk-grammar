@@ -39,7 +39,7 @@ patterns: [
 		end: "$"
 		patterns: [
 			{
-				name: "string"
+				name: "string.louk"
 				match: ".*"
 			}
 		]
@@ -72,15 +72,30 @@ patterns: [
 		]
 	}
 	{
-		comment: "An element"
+		comment: "An element with static comment"
 		name: "meta.tag.any.html.louk"
-		begin: "^\\s*([^\\s~]*)(~?)"
+		begin: "^\\s*([^\\s~]*)(~)"
 		end: "$"
 		beginCaptures:
 			"1":
 				name: "entity.name.tag.html.louk"
 			"2":
 				name: "punctuation.definition.tag.static.louk"
+		patterns: [
+			{
+				name: "string.louk"
+				match: ".*"
+			}
+		]
+	}
+	{
+		comment: "An element with dynamic content"
+		name: "meta.tag.any.html.louk"
+		begin: "^\\s*([^\\s~]*)"
+		end: "$"
+		beginCaptures:
+			"1":
+				name: "entity.name.tag.html.louk"
 		patterns: [
 			{
 				include: "source.js"

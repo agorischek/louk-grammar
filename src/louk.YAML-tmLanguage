@@ -33,7 +33,7 @@ patterns:
     '2': {name: entity.other.attribute-name.louk}
   end: $
   patterns:
-  - name: string
+  - name: string.louk
     match: .*
 
 - comment: A directive attribute
@@ -55,16 +55,27 @@ patterns:
   - include: text.html.vue
 
 # Everything else is assumed to be an element.
-# This rule is very generic, and must come last!
-- comment: An element
+# These last rules are very generic, and must come last!
+- comment: An element with static comment
   name: meta.tag.any.html.louk
   #Previously 'begin' had an optional space at the end '\s*' but for some reason that broke Atom.
-  begin: ^\s*([^\s~]*)(~?)
+  begin: ^\s*([^\s~]*)(~)
   end: $
   beginCaptures:
     '1': {name: entity.name.tag.html.louk}
     #The static tag marker is the other aspect of Louk grammar that does not map to an existing Vue construct.
     '2': {name: punctuation.definition.tag.static.louk}
+  patterns:
+  - name: string.louk
+    match: .*
+
+- comment: An element with dynamic content
+  name: meta.tag.any.html.louk
+  #Previously 'begin' had an optional space at the end '\s*' but for some reason that broke Atom.
+  begin: ^\s*([^\s~]*)
+  end: $
+  beginCaptures:
+    '1': {name: entity.name.tag.html.louk}
   patterns:
   - include: source.js
 
