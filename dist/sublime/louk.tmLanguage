@@ -158,7 +158,7 @@
           <key>2</key>
           <dict>
             <key>name</key>
-            <string>punctuation.definition.attribute.static.louk</string>
+            <string>punctuation.definition.tag.static.louk</string>
           </dict>
         </dict>
         <key>patterns</key>

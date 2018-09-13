@@ -80,7 +80,7 @@ patterns: [
 			"1":
 				name: "entity.name.tag.html.louk"
 			"2":
-				name: "punctuation.definition.attribute.static.louk"
+				name: "punctuation.definition.tag.static.louk"
 		patterns: [
 			{
 				include: "source.js"

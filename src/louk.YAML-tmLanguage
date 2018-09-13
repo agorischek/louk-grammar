@@ -63,7 +63,8 @@ patterns:
   end: $
   beginCaptures:
     '1': {name: entity.name.tag.html.louk}
-    '2': {name: punctuation.definition.attribute.static.louk}
+    #The static tag marker is the other aspect of Louk grammar that does not map to an existing Vue construct.
+    '2': {name: punctuation.definition.tag.static.louk}
   patterns:
   - include: source.js
 
