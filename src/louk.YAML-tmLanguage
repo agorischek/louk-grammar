@@ -33,7 +33,8 @@ patterns:
     '2': {name: entity.other.attribute-name.louk}
   end: $
   patterns:
-  - include: source.js
+  - name: string
+    match: .*
 
 - comment: A directive attribute
   name: meta.directive.vue.louk
