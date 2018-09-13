@@ -5,7 +5,6 @@ const plist = require('plist');
 const fs = require('fs');
 
 const input = "src/louk.YAML-tmLanguage"
-
 const editors = yaml.parse(fs.readFileSync("editors.yaml", "utf8"))
 
 function writeOutput(editor, grammar){
