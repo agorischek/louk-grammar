@@ -1,18 +1,34 @@
 const gulp = require('gulp');
-const YAML = require('yamljs');
-const plist = require('simple-plist');
+const yaml = require('yamljs');
+const cson = require('cson');
+const plist = require('plist');
+const fs = require('fs');
 
 const input = "src/louk.YAML-tmLanguage"
-const outputFile = "louk.tmLanguage"
-const distOutput = {
-    sublime: "dist/sublime/" + outputFile
+
+const editors = yaml.parse(fs.readFileSync("editors.yaml", "utf8"))
+
+function writeOutput(editor, grammar){
+
+    const info = editors[editor]
+
+    fs.writeFileSync(info.distDir + info.grammarSubdir + info.file, grammar[info.format])
+    fs.writeFileSync(info.previewDir + info.grammarSubdir + info.file, grammar[info.format])
+
 }
-const previewOutput = "../../Library/Application Support/Sublime Text 3/Packages/User/" + outputFile
 
 function build(){
-    const grammar = YAML.load(input);
-    plist.writeFileSync(distOutput.sublime, grammar);
-    plist.writeFileSync(previewOutput, grammar);
+
+    const grammar = {}
+    grammar.yaml = fs.readFileSync(input, "utf8");
+
+    grammar.json = yaml.parse(grammar.yaml);
+    grammar.cson = cson.createCSONString(grammar.json);
+    grammar.plist = plist.build(grammar.json);
+
+    writeOutput("sublime", grammar)
+    writeOutput("atom", grammar)
+
 }
 
 function watch(){
