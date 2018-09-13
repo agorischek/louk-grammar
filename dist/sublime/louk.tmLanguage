@@ -124,7 +124,7 @@
         <key>comment</key>
         <string>An HTML line</string>
         <key>name</key>
-        <string>comment</string>
+        <string>text.html</string>
         <key>begin</key>
         <string>(?=^\s*&lt;)</string>
         <key>end</key>
