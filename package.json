@@ -23,6 +23,7 @@
   "private": true,
   "devDependencies": {
     "cson": "^5.1.0",
+    "merge": "^1.2.0",
     "plist": "^3.0.1",
     "simple-plist": "^0.3.0",
     "yamljs": "^0.3.0"

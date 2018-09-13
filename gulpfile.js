@@ -3,9 +3,11 @@ const yaml = require('yamljs');
 const cson = require('cson');
 const plist = require('plist');
 const fs = require('fs');
+const merge = require('merge');
 
 const input = "src/louk.YAML-tmLanguage"
 const editors = yaml.parse(fs.readFileSync("editors.yaml", "utf8"))
+const packages = yaml.parse(fs.readFileSync("./src/packages.yaml", "utf8"))
 
 function writeOutput(editor, grammar){
 
@@ -14,6 +16,19 @@ function writeOutput(editor, grammar){
     fs.writeFileSync(info.distDir + info.grammarSubdir + info.file, grammar[info.format])
     fs.writeFileSync(info.previewDir + info.grammarSubdir + info.file, grammar[info.format])
 
+}
+
+function writePackageInfo(editor){
+
+    const info = editors[editor]
+
+    const general = packages.general
+    const specific = packages[editor]
+
+    const package = merge(general, specific)
+
+    fs.writeFileSync(info.distDir + "package.json", JSON.stringify(package))
+    fs.writeFileSync(info.previewDir + "package.json", JSON.stringify(package))
 }
 
 function build(){
@@ -26,7 +41,10 @@ function build(){
     grammar.plist = plist.build(grammar.json);
 
     writeOutput("sublime", grammar)
+    writePackageInfo("sublime")
+
     writeOutput("atom", grammar)
+    writePackageInfo("atom")
 
 }
 
