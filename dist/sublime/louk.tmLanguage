@@ -85,8 +85,10 @@
         <key>patterns</key>
         <array>
           <dict>
-            <key>include</key>
-            <string>source.js</string>
+            <key>name</key>
+            <string>string</string>
+            <key>match</key>
+            <string>.*</string>
           </dict>
         </array>
       </dict>
@@ -143,7 +145,7 @@
         <key>name</key>
         <string>meta.tag.any.html.louk</string>
         <key>begin</key>
-        <string>^\s*(\S*)\s*</string>
+        <string>^\s*([^\s~]*)(~?)</string>
         <key>end</key>
         <string>$</string>
         <key>beginCaptures</key>
@@ -152,6 +154,11 @@
           <dict>
             <key>name</key>
             <string>entity.name.tag.html.louk</string>
+          </dict>
+          <key>2</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.definition.attribute.static.louk</string>
           </dict>
         </dict>
         <key>patterns</key>
