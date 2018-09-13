@@ -47,7 +47,7 @@ patterns:
 
     #Inline HTML falls back to default Vue styling.
 - comment: An HTML line
-  name: comment
+  name: text.html
   begin: (?=^\s*<)
   end: $
   patterns:
