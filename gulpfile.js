@@ -8,6 +8,19 @@ const merge = require('merge');
 const input = "src/louk.YAML-tmLanguage"
 const editors = yaml.parse(fs.readFileSync("editors.yaml", "utf8"))
 const packages = yaml.parse(fs.readFileSync("./src/packages.yaml", "utf8"))
+const readmes = fs.readFileSync("./src/READMES.md", "utf8")
+
+gulp.task('build', function() {
+    build();
+});
+
+gulp.task('watch', ['default'], function() {
+    watch();
+});
+
+gulp.task('default', function(){
+    build();
+})
 
 function writeOutput(editor, grammar){
 
@@ -42,9 +55,11 @@ function build(){
 
     writeOutput("sublime", grammar)
     writePackageInfo("sublime")
+    writeReadme(readmes, "sublime")
 
     writeOutput("atom", grammar)
     writePackageInfo("atom")
+    writeReadme(readmes, "atom")
 
 }
 
@@ -52,14 +67,59 @@ function watch(){
     return gulp.watch('src/*', ['default']);
 }
 
-gulp.task('build', function() {
-    build();
-});
+function writeReadme(content, editor){
 
-gulp.task('watch', ['default'], function() {
-    watch();
-});
+    const info = editors[editor]
 
-gulp.task('default', function(){
-    build();
-})
+    const input = content
+    const lines = input.split("\n")
+
+    const general = "*"
+
+    var sections = []
+
+    var section = []
+    var appliesTo = []
+
+    for(i = 0; i < lines.length; i++){
+
+        const sectionPattern = /^@@@(.*)@@@$/
+        if (lines[i].match(sectionPattern)){
+            sections.push([appliesTo,section])
+            var section = []
+            var headerMatches = lines[i].match(sectionPattern)[1].split(" ")
+            var appliesTo = []
+            for(j = 0; j < headerMatches.length; j++){
+                if(headerMatches[j] != ""){
+                    appliesTo.push(headerMatches[j])
+                }
+            }
+        }
+        else{
+            section.push(lines[i])
+        }
+    }
+
+    sections.push([appliesTo,section])
+
+    var scopedSections = []
+
+    for(i = 0; i < sections.length; i++){
+        if(sections[i][0].indexOf(editor) > -1 | sections[i][0].indexOf(general) > -1){
+            scopedSections.push(sections[i][1])
+        }
+    }
+
+    var output = ""
+
+    for(i = 0; i < scopedSections.length; i++){
+        for(j = 0; j < scopedSections[i].length; j++){
+            output = output + scopedSections[i][j]
+            if(i != (scopedSections.length - 1) && j != (scopedSections.length[i] - 1)){
+                output = output + "\n"
+            }
+        }
+    }
+
+    fs.writeFileSync(info.distDir + "README.md", output)
+}
