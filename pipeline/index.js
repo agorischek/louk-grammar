@@ -61,7 +61,7 @@ function buildReadme(content, editor){
     for(i = 0; i < scopedSections.length; i++){
         for(j = 0; j < scopedSections[i].length; j++){
             output = output + scopedSections[i][j]
-            if(i != (scopedSections.length - 1) && j != (scopedSections.length[i] - 1)){
+            if(i != (scopedSections.length) && j != (scopedSections.length[i])){
                 output = output + "\n"
             }
         }

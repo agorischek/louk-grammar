@@ -3,7 +3,6 @@
 Syntax highlighting for Louk.
 
 ## Installation
-
 @@@ atom @@@
 These are installation instructions for Atom.
 
