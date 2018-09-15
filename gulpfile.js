@@ -1,13 +1,11 @@
 const gulp = require('gulp');
-const yaml = require('yamljs');
-const cson = require('cson');
-const plist = require('plist');
+const multigrain = require('multigrain');
 const fs = require('fs');
-const merge = require('merge');
+const pipeline = require('./pipeline/index.js')
 
 const input = "src/louk.YAML-tmLanguage"
-const editors = yaml.parse(fs.readFileSync("editors.yaml", "utf8"))
-const packages = yaml.parse(fs.readFileSync("./src/packages.yaml", "utf8"))
+const editors = multigrain.parse(fs.readFileSync("editors.yaml", "utf8"), "yaml")
+const packages = multigrain.parse(fs.readFileSync("./src/packages.yaml", "utf8"), "yaml")
 const readmes = fs.readFileSync("./src/READMES.md", "utf8")
 
 gulp.task('build', function() {
@@ -22,7 +20,30 @@ gulp.task('default', function(){
     build();
 })
 
-function writeOutput(editor, grammar){
+function build(){
+
+    const grammar = {}
+    grammar.yaml = fs.readFileSync(input, "utf8");
+
+    grammar.json = multigrain.json(grammar.yaml, "yaml");
+    grammar.cson = multigrain.cson(grammar.json, "json");
+    grammar.plist = multigrain.plist(grammar.json, "json");
+
+    writeGrammar("sublime", grammar)
+    writePackageInfo("sublime")
+    writeReadme(readmes, "sublime")
+
+    writeGrammar("atom", grammar)
+    writePackageInfo("atom")
+    writeReadme(readmes, "atom")
+
+}
+
+function watch(){
+    return gulp.watch('src/*', ['default']);
+}
+
+function writeGrammar(editor, grammar){
 
     const info = editors[editor]
 
@@ -33,93 +54,20 @@ function writeOutput(editor, grammar){
 
 function writePackageInfo(editor){
 
-    const info = editors[editor]
+    const distFile = editors[editor].distDir + "package.json"
+    const previewFile = editors[editor].previewDir + "package.json"
 
-    const general = packages.general
-    const specific = packages[editor]
+    const packageInfo = multigrain.json(pipeline.package(packages, editor))
 
-    const package = merge(general, specific)
-
-    fs.writeFileSync(info.distDir + "package.json", JSON.stringify(package))
-    fs.writeFileSync(info.previewDir + "package.json", JSON.stringify(package))
-}
-
-function build(){
-
-    const grammar = {}
-    grammar.yaml = fs.readFileSync(input, "utf8");
-
-    grammar.json = yaml.parse(grammar.yaml);
-    grammar.cson = cson.createCSONString(grammar.json);
-    grammar.plist = plist.build(grammar.json);
-
-    writeOutput("sublime", grammar)
-    writePackageInfo("sublime")
-    writeReadme(readmes, "sublime")
-
-    writeOutput("atom", grammar)
-    writePackageInfo("atom")
-    writeReadme(readmes, "atom")
-
-}
-
-function watch(){
-    return gulp.watch('src/*', ['default']);
+    fs.writeFileSync(distFile, packageInfo)
+    fs.writeFileSync(previewFile, packageInfo)
 }
 
 function writeReadme(content, editor){
 
-    const info = editors[editor]
+    const distFile  = editors[editor].distDir + "README.md"
+    const readme = pipeline.readme(content, editor)
 
-    const input = content
-    const lines = input.split("\n")
+    fs.writeFileSync(distFile , readme)
 
-    const general = "*"
-
-    var sections = []
-
-    var section = []
-    var appliesTo = []
-
-    for(i = 0; i < lines.length; i++){
-
-        const sectionPattern = /^@@@(.*)@@@$/
-        if (lines[i].match(sectionPattern)){
-            sections.push([appliesTo,section])
-            var section = []
-            var headerMatches = lines[i].match(sectionPattern)[1].split(" ")
-            var appliesTo = []
-            for(j = 0; j < headerMatches.length; j++){
-                if(headerMatches[j] != ""){
-                    appliesTo.push(headerMatches[j])
-                }
-            }
-        }
-        else{
-            section.push(lines[i])
-        }
-    }
-
-    sections.push([appliesTo,section])
-
-    var scopedSections = []
-
-    for(i = 0; i < sections.length; i++){
-        if(sections[i][0].indexOf(editor) > -1 | sections[i][0].indexOf(general) > -1){
-            scopedSections.push(sections[i][1])
-        }
-    }
-
-    var output = ""
-
-    for(i = 0; i < scopedSections.length; i++){
-        for(j = 0; j < scopedSections[i].length; j++){
-            output = output + scopedSections[i][j]
-            if(i != (scopedSections.length - 1) && j != (scopedSections.length[i] - 1)){
-                output = output + "\n"
-            }
-        }
-    }
-
-    fs.writeFileSync(info.distDir + "README.md", output)
 }
