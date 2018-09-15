@@ -1,0 +1,13 @@
+[atom]
+format = "cson"
+file = "louk.cson"
+previewDir = "../../.atom/packages/language-louk/"
+distDir = "dist/atom/"
+grammarSubdir = "grammars/"
+
+[sublime]
+format = "plist"
+file = "louk.tmLanguage"
+previewDir = "../../Library/Application Support/Sublime Text 3/Packages/User/"
+distDir = "dist/sublime/"
+grammarSubdir = ""

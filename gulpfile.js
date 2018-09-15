@@ -4,7 +4,7 @@ const fs = require('fs');
 const pipeline = require('./pipeline/index.js')
 
 const input = "src/louk.YAML-tmLanguage"
-const editors = multigrain.parse(fs.readFileSync("editors.yaml", "utf8"), "yaml")
+const editors = multigrain.parse(fs.readFileSync("./src/editors.toml", "utf8"), "toml")
 const packages = multigrain.parse(fs.readFileSync("./src/packages.yaml", "utf8"), "yaml")
 const readmes = fs.readFileSync("./src/READMES.md", "utf8")
 
