@@ -30,7 +30,7 @@ patterns: [
 	{
 		comment: "A static attribute"
 		name: "meta.attribute-with-value.louk"
-		begin: "^\\s*([~])(\\S*)"
+		begin: "^\\s*([\"])(\\S*)"
 		beginCaptures:
 			"1":
 				name: "punctuation.definition.attribute.static.louk"
@@ -69,12 +69,23 @@ patterns: [
 			{
 				include: "text.html.vue"
 			}
+			{
+				comment: "A section marker"
+				name: "meta.tag.vue.louk"
+				begin: "^([^\\s]*)(,)"
+				end: "$"
+				beginCaptures:
+					"1":
+						name: "entity.name.tag.html.louk"
+					"2":
+						name: "punctuation.definition.tag.static.louk"
+			}
 		]
 	}
 	{
-		comment: "An element with static comment"
+		comment: "An element"
 		name: "meta.tag.any.html.louk"
-		begin: "^\\s*([^\\s~]*)(~)"
+		begin: "^\\s*([^\\s\"]*)(\")"
 		end: "$"
 		beginCaptures:
 			"1":
@@ -91,7 +102,7 @@ patterns: [
 	{
 		comment: "An element with dynamic content"
 		name: "meta.tag.any.html.louk"
-		begin: "^\\s*([^\\s~]*)"
+		begin: "^\\s*([^\\s\"]*)"
 		end: "$"
 		beginCaptures:
 			"1":

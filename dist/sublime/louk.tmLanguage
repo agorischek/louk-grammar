@@ -66,7 +66,7 @@
         <key>name</key>
         <string>meta.attribute-with-value.louk</string>
         <key>begin</key>
-        <string>^\s*([~])(\S*)</string>
+        <string>^\s*(["])(\S*)</string>
         <key>beginCaptures</key>
         <dict>
           <key>1</key>
@@ -137,15 +137,38 @@
             <key>include</key>
             <string>text.html.vue</string>
           </dict>
+          <dict>
+            <key>comment</key>
+            <string>A section marker</string>
+            <key>name</key>
+            <string>meta.tag.vue.louk</string>
+            <key>begin</key>
+            <string>^([^\s]*)(,)</string>
+            <key>end</key>
+            <string>$</string>
+            <key>beginCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>entity.name.tag.html.louk</string>
+              </dict>
+              <key>2</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.definition.tag.static.louk</string>
+              </dict>
+            </dict>
+          </dict>
         </array>
       </dict>
       <dict>
         <key>comment</key>
-        <string>An element with static comment</string>
+        <string>An element</string>
         <key>name</key>
         <string>meta.tag.any.html.louk</string>
         <key>begin</key>
-        <string>^\s*([^\s~]*)(~)</string>
+        <string>^\s*([^\s"]*)(")</string>
         <key>end</key>
         <string>$</string>
         <key>beginCaptures</key>
@@ -177,7 +200,7 @@
         <key>name</key>
         <string>meta.tag.any.html.louk</string>
         <key>begin</key>
-        <string>^\s*([^\s~]*)</string>
+        <string>^\s*([^\s"]*)</string>
         <key>end</key>
         <string>$</string>
         <key>beginCaptures</key>

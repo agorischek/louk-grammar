@@ -26,7 +26,7 @@ patterns:
 
 - comment: A static attribute
   name: meta.attribute-with-value.louk
-  begin: ^\s*([~])(\S*)
+  begin: ^\s*(["])(\S*)
   beginCaptures:
       #The static attribute marker is one of the few aspects of Louk grammar that does not map to an existing Vue construct.
     '1': {name: punctuation.definition.attribute.static.louk}
@@ -46,7 +46,7 @@ patterns:
   patterns:
   - include: source.js
 
-    #Inline HTML falls back to default Vue styling.
+# Inline HTML falls back to default Vue styling.
 - comment: An HTML line
   name: text.html
   begin: (?=^\s*<)
@@ -54,12 +54,22 @@ patterns:
   patterns:
   - include: text.html.vue
 
+  - comment: A section marker
+    name: meta.tag.vue.louk
+    #Previously 'begin' had an optional space at the end '\s*' but for some reason that broke Atom.
+    begin: ^([^\s]*)(,)
+    end: $
+    beginCaptures:
+      '1': {name: entity.name.tag.html.louk}
+      #The static tag marker is the other aspect of Louk grammar that does not map to an existing Vue construct.
+      '2': {name: punctuation.definition.tag.static.louk}
+
 # Everything else is assumed to be an element.
 # These last rules are very generic, and must come last!
-- comment: An element with static comment
+- comment: An element
   name: meta.tag.any.html.louk
   #Previously 'begin' had an optional space at the end '\s*' but for some reason that broke Atom.
-  begin: ^\s*([^\s~]*)(~)
+  begin: ^\s*([^\s"]*)(")
   end: $
   beginCaptures:
     '1': {name: entity.name.tag.html.louk}
@@ -72,7 +82,7 @@ patterns:
 - comment: An element with dynamic content
   name: meta.tag.any.html.louk
   #Previously 'begin' had an optional space at the end '\s*' but for some reason that broke Atom.
-  begin: ^\s*([^\s~]*)
+  begin: ^\s*([^\s"]*)
   end: $
   beginCaptures:
     '1': {name: entity.name.tag.html.louk}
