@@ -1,12 +1,12 @@
-const gulp = require('gulp');
-const multigrain = require('multigrain');
-const fs = require('fs');
-const pipeline = require('./pipeline/index.js')
+var gulp = require('gulp');
+var multigrain = require('multigrain');
+var fs = require('fs');
+var pipeline = require('./pipeline/index.js');
 
-const input = "src/louk.YAML-tmLanguage"
-const editors = multigrain.parse(fs.readFileSync("./src/editors.toml", "utf8"), "toml")
-const packages = multigrain.parse(fs.readFileSync("./src/packages.yaml", "utf8"), "yaml")
-const readmes = fs.readFileSync("./src/READMES.md", "utf8")
+var input = "src/louk.YAML-tmLanguage";
+var editors = multigrain.parse(fs.readFileSync("./src/editors.toml", "utf8"), "toml");
+var packages = multigrain.parse(fs.readFileSync("./src/packages.yaml", "utf8"), "yaml");
+var readmes = fs.readFileSync("./src/READMES.md", "utf8");
 
 gulp.task('build', function(done) {
     build();
@@ -21,24 +21,24 @@ gulp.task('watch', ['default'], function(done) {
 gulp.task('default', function(done){
     build();
     done();
-})
+});
 
 function build(){
 
-    const grammar = {}
+    var grammar = {};
     grammar.yaml = fs.readFileSync(input, "utf8");
 
     grammar.json = multigrain.json(grammar.yaml, "yaml");
     grammar.cson = multigrain.cson(grammar.json, "json");
     grammar.plist = multigrain.plist(grammar.json, "json");
 
-    writeGrammar("sublime", grammar)
-    writePackageInfo("sublime")
-    writeReadme(readmes, "sublime")
+    writeGrammar("sublime", grammar);
+    writePackageInfo("sublime");
+    writeReadme(readmes, "sublime");
 
-    writeGrammar("atom", grammar)
-    writePackageInfo("atom")
-    writeReadme(readmes, "atom")
+    writeGrammar("atom", grammar);
+    writePackageInfo("atom");
+    writeReadme(readmes, "atom");
 
 }
 
@@ -48,29 +48,29 @@ function watch(){
 
 function writeGrammar(editor, grammar){
 
-    const info = editors[editor]
+    var info = editors[editor];
 
-    fs.writeFileSync(info.distDir + info.grammarSubdir + info.file, grammar[info.format])
-    fs.writeFileSync(info.previewDir + info.grammarSubdir + info.file, grammar[info.format])
+    fs.writeFileSync(info.distDir + info.grammarSubdir + info.file, grammar[info.format]);
+    fs.writeFileSync(info.previewDir + info.grammarSubdir + info.file, grammar[info.format]);
 
 }
 
 function writePackageInfo(editor){
 
-    const distFile = editors[editor].distDir + "package.json"
-    const previewFile = editors[editor].previewDir + "package.json"
+    var distFile = editors[editor].distDir + "package.json";
+    var previewFile = editors[editor].previewDir + "package.json";
 
-    const packageInfo = multigrain.json(pipeline.package(packages, editor))
+    var packageInfo = multigrain.json(pipeline.package(packages, editor));
 
-    fs.writeFileSync(distFile, packageInfo)
-    fs.writeFileSync(previewFile, packageInfo)
+    fs.writeFileSync(distFile, packageInfo);
+    fs.writeFileSync(previewFile, packageInfo);
 }
 
 function writeReadme(content, editor){
 
-    const distFile  = editors[editor].distDir + "README.md"
-    const readme = pipeline.readme(content, editor)
+    var distFile  = editors[editor].distDir + "README.md";
+    var readme = pipeline.readme(content, editor);
 
-    fs.writeFileSync(distFile , readme)
+    fs.writeFileSync(distFile , readme);
 
 }
