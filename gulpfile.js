@@ -8,16 +8,19 @@ const editors = multigrain.parse(fs.readFileSync("./src/editors.toml", "utf8"), 
 const packages = multigrain.parse(fs.readFileSync("./src/packages.yaml", "utf8"), "yaml")
 const readmes = fs.readFileSync("./src/READMES.md", "utf8")
 
-gulp.task('build', function() {
+gulp.task('build', function(done) {
     build();
+    done();
 });
 
-gulp.task('watch', ['default'], function() {
+gulp.task('watch', ['default'], function(done) {
     watch();
+    done();
 });
 
-gulp.task('default', function(){
+gulp.task('default', function(done){
     build();
+    done();
 })
 
 function build(){
