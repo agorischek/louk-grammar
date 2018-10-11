@@ -13,14 +13,10 @@ gulp.task('build', function(done) {
     done();
 });
 
-gulp.task('watch', ['default'], function(done) {
-    watch();
-    done();
-});
+gulp.task('default', gulp.series('build'));
 
-gulp.task('default', function(done){
-    build();
-    done();
+gulp.task('watch', function() {
+    return gulp.watch('src/*', gulp.series('build'));
 });
 
 function build(){
@@ -40,10 +36,6 @@ function build(){
     writePackageInfo("atom");
     writeReadme(readmes, "atom");
 
-}
-
-function watch(){
-    return gulp.watch('src/*', ['default']);
 }
 
 function writeGrammar(editor, grammar){
