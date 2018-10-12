@@ -13,56 +13,68 @@ gulp.task('build', function(done) {
     done();
 });
 
-gulp.task('default', gulp.series('build'));
+gulp.task("preview", function(done){
+    for(var editor in editors){
+        gulp.src("staging/" + editor + "/**/*")
+            .pipe(gulp.dest(editors[editor].previewDir));
+    }
+    done();
+});
+
+gulp.task("distribute", function(done){
+    for(var editor in editors){
+        gulp.src("staging/" + editor + "/**/*")
+            .pipe(gulp.dest(editors[editor].distDir));
+    }
+    done();
+});
+
+gulp.task('default', gulp.series('build', 'preview', 'distribute'));
 
 gulp.task('watch', function() {
-    return gulp.watch('src/*', gulp.series('build'));
+    return gulp.watch('src/*', gulp.series('build', 'preview', 'distribute'));
 });
 
 function build(){
 
-    var grammar = {};
-    grammar.yaml = fs.readFileSync(input, "utf8");
+    var grammar = parseGrammar(fs.readFileSync(input, "utf8"));
 
-    grammar.json = multigrain.json(grammar.yaml, "yaml");
-    grammar.cson = multigrain.cson(grammar.json, "json");
-    grammar.plist = multigrain.plist(grammar.json, "json");
-
-    writeGrammar("sublime", grammar);
-    writePackageInfo("sublime");
-    writeReadme(readmes, "sublime");
-
-    writeGrammar("atom", grammar);
-    writePackageInfo("atom");
-    writeReadme(readmes, "atom");
+    for(var editor in editors){
+      writeGrammar(editor, grammar);
+      writePackageInfo(editor);
+      writeReadme(editor, readmes);
+    }
 
 }
 
 function writeGrammar(editor, grammar){
 
     var info = editors[editor];
-
-    fs.writeFileSync(info.distDir + info.grammarSubdir + info.file, grammar[info.format]);
-    fs.writeFileSync(info.previewDir + info.grammarSubdir + info.file, grammar[info.format]);
+    fs.writeFileSync("staging/" + editor + "/" + info.grammarSubdir + info.file, grammar[info.format]);
 
 }
 
 function writePackageInfo(editor){
 
-    var distFile = editors[editor].distDir + "package.json";
-    var previewFile = editors[editor].previewDir + "package.json";
-
+    var distFile = "staging/" + editor + "/package.json";
     var packageInfo = multigrain.json(pipeline.package(packages, editor));
-
     fs.writeFileSync(distFile, packageInfo);
-    fs.writeFileSync(previewFile, packageInfo);
+
 }
 
-function writeReadme(content, editor){
+function writeReadme(editor, content){
 
-    var distFile  = editors[editor].distDir + "README.md";
+    var distFile  = "staging/" + editor + "/README.md";
     var readme = pipeline.readme(content, editor);
-
     fs.writeFileSync(distFile , readme);
 
+}
+
+function parseGrammar(grammar){
+    var parsedGrammar = {};
+    parsedGrammar.yaml = grammar;
+    parsedGrammar.json = multigrain.json(parsedGrammar.yaml, "yaml");
+    parsedGrammar.cson = multigrain.cson(parsedGrammar.json, "json");
+    parsedGrammar.plist = multigrain.plist(parsedGrammar.json, "json");
+    return parsedGrammar;
 }
