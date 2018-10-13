@@ -1,12 +1,11 @@
 template,
-  //A comment.
+  // A comment.
   div message
   #title
   	a
-     	>github.com
-     .main
-
-  //Another comment
+    >github.com
+    .main
+  // Another comment
   	span
   	.main
     	@click alert
@@ -26,4 +25,3 @@ style,
 
   #this
     font-family:"Arial"
-  
