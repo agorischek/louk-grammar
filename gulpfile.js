@@ -3,10 +3,10 @@ var multigrain = require('multigrain');
 var fs = require('fs');
 var pipeline = require('./pipeline/index.js');
 
-var input = "src/louk.YAML-tmLanguage";
-var editors = multigrain.parse(fs.readFileSync("./src/editors.toml", "utf8"), "toml");
-var packages = multigrain.parse(fs.readFileSync("./src/packages.yaml", "utf8"), "yaml");
-var readmes = fs.readFileSync("./src/READMES.md", "utf8");
+var input = "source/louk.YAML-tmLanguage";
+var editors = multigrain.parse(fs.readFileSync("./source/editors.toml", "utf8"), "toml");
+var packages = multigrain.parse(fs.readFileSync("./source/packages.yaml", "utf8"), "yaml");
+var readmes = fs.readFileSync("./source/READMES.md", "utf8");
 
 gulp.task('build', function(done) {
     build();
@@ -32,7 +32,7 @@ gulp.task("distribute", function(done){
 gulp.task('default', gulp.series('build', 'preview', 'distribute'));
 
 gulp.task('watch', function() {
-    return gulp.watch('src/*', gulp.series('build', 'preview', 'distribute'));
+    return gulp.watch('/*', gulp.series('build', 'preview', 'distribute'));
 });
 
 function build(){

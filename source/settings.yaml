@@ -1,3 +1,4 @@
+---
 .text.html.vue.louk:
   editor:
-    commentStart: '// '
+    commentStart: "// "
