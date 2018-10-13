@@ -1,71 +1,70 @@
-const merge = require('merge');
+var merge = require('merge');
 
 module.exports = {
     readme: buildReadme,
     package: buildPackage
-}
+};
 
 function buildPackage(packages, editor){
 
-    const general = packages.general
-    const specific = packages[editor]
+    var general = packages.general;
+    var specific = packages[editor];
 
-    const packageInfo = merge(general, specific)
+    var packageInfo = merge(general, specific);
 
-    return packageInfo
+    return packageInfo;
 }
 
 function buildReadme(content, editor){
 
-    const input = content
-    const lines = input.split("\n")
+    var input = content;
+    var lines = input.split("\n");
 
-    const general = "*"
+    var general = "*";
 
-    var sections = []
+    var sections = [];
 
-    var section = []
-    var appliesTo = []
+    var appliesTo = [];
 
     for(i = 0; i < lines.length; i++){
 
-        const sectionPattern = /^@@@(.*)@@@$/
+        var sectionPattern = /^@@@(.*)@@@$/;
         if (lines[i].match(sectionPattern)){
-            sections.push([appliesTo,section])
-            var section = []
-            var headerMatches = lines[i].match(sectionPattern)[1].split(" ")
-            var appliesTo = []
+            sections.push([appliesTo,section]);
+            section = [];
+            var headerMatches = lines[i].match(sectionPattern)[1].split(" ");
+            appliesTo = [];
             for(j = 0; j < headerMatches.length; j++){
                 if(headerMatches[j] != ""){
-                    appliesTo.push(headerMatches[j])
+                    appliesTo.push(headerMatches[j]);
                 }
             }
         }
         else{
-            section.push(lines[i])
+            section.push(lines[i]);
         }
     }
 
-    sections.push([appliesTo,section])
+    sections.push([appliesTo,section]);
 
-    var scopedSections = []
+    var scopedSections = [];
 
     for(i = 0; i < sections.length; i++){
         if(sections[i][0].indexOf(editor) > -1 | sections[i][0].indexOf(general) > -1){
-            scopedSections.push(sections[i][1])
+            scopedSections.push(sections[i][1]);
         }
     }
 
-    var output = ""
+    var output = "";
 
     for(i = 0; i < scopedSections.length; i++){
         for(j = 0; j < scopedSections[i].length; j++){
-            output = output + scopedSections[i][j]
+            output = output + scopedSections[i][j];
             if(i != (scopedSections.length) && j != (scopedSections.length[i])){
-                output = output + "\n"
+                output = output + "\n";
             }
         }
     }
 
-    return output
+    return output;
 }
