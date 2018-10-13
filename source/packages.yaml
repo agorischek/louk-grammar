@@ -1,5 +1,5 @@
 ---
-general:
+"*":
   version: 0.0.1
   description: Syntax highlighting for Louk language
   license: MIT

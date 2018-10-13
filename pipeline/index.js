@@ -15,7 +15,7 @@ module.exports = {
 
 function buildPackage(packages, editor){
 
-    var general = packages.general;
+    var general = packages["*"];
     var specific = packages[editor];
 
     var packageInfo = merge(general, specific);
