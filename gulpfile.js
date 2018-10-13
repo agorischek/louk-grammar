@@ -23,7 +23,7 @@ gulp.task("distribute", function(done){
     done();
 });
 
-gulp.task('default', gulp.series('build', 'preview', 'distribute'));
+gulp.task('default', gulp.series('build', gulp.parallel('preview', 'distribute')));
 
 gulp.task('watch', function() {
     return gulp.watch('/*', gulp.series('build', 'preview', 'distribute'));
