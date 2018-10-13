@@ -2,7 +2,7 @@
 format = "cson"
 previewDir = "../../.atom/packages/language-louk/"
 distDir = "../language-louk/"
-grammarfile = "louk.cson"
+grammarFile = "louk.cson"
 grammarSubdir = "grammars/"
 settingsFile = "language-atom.cson"
 settingsSubdir = "settings/"
