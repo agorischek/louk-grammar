@@ -24,12 +24,17 @@ function build(){
       writeSettings(editor, settings);
       writePackageInfo(editor);
       writeReadme(editor, readmes);
+      copyLicense(editor);
       copyAssets(editor);
     }
 }
 
+function copyLicense(editor){
+    copy("source/LICENSE", "staging/" + editor + "/LICENSE", {overwrite: true});
+}
+
 function copyAssets(editor){
-    copy("source/assets", "staging" + editor + "/assets");
+    copy("source/assets", "staging/" + editor + "/assets", {overwrite: true});
 }
 
 function buildPackage(packages, editor){
