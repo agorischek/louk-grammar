@@ -13,15 +13,13 @@ template,
     		@keyup.enter cancel
     		-if enabled
     		:class myClass
-    		<div>HTML!</div>
+    		<div>HTML!/</div>
 script,
     function(x){
     return x
   }
 
 style,
-  .hey
-    color:green
-
-  #this
-    font-family:"Arial"
+    body{
+        color:green;
+    }
