@@ -1,16 +1,25 @@
-//A comment.
-div message
-#title
-	a
-   	>github.com
-   .main
+template,
+  // A comment.
+  div message
+  #title
+  	a
+    >github.com
+    .main
+  // Another comment
+  	span
+  	.main
+    	@click alert
+    		div content
+    		@keyup.enter cancel
+    		-if enabled
+    		:class myClass
+    		<div>HTML!/</div>
+script,
+    function(x){
+    return x
+  }
 
-//Another comment
-	span
-	.main
-  	@click alert
-  		div content
-  		@keyup.enter cancel
-  		-if enabled
-  		:class myClass
-  		<div>HTML!</div>
+style,
+    body{
+        color:green;
+    }

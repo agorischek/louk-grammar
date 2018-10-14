@@ -1,13 +1,15 @@
 [atom]
 format = "cson"
-file = "louk.cson"
 previewDir = "../../.atom/packages/language-louk/"
-distDir = "dist/atom/"
+distDir = "../language-louk/"
+grammarFile = "louk.cson"
 grammarSubdir = "grammars/"
+settingsFile = "language-atom.cson"
+settingsSubdir = "settings/"
 
 [sublime]
 format = "plist"
-file = "louk.tmLanguage"
 previewDir = "../../Library/Application Support/Sublime Text 3/Packages/User/"
-distDir = "dist/sublime/"
+distDir = "../louk-syntax/"
+grammarFile = "louk.tmLanguage"
 grammarSubdir = ""

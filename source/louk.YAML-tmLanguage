@@ -1,0 +1,122 @@
+---
+name: Louk
+scopeName: text.html.vue.louk
+fileTypes: [louk]
+uuid: 444bb94d-ce8b-415d-8683-534f8524ee5a
+
+patterns:
+
+- comment: Script section marker
+  name: meta.tag.vue.louk
+  begin: ^(script)(,)
+  # Does a lookahead to match the next section marker, without capturing it.
+  end: (?=^([^\s]*)(,))
+  beginCaptures:
+    '1': {name: entity.name.tag.html.louk}
+    # The static tag marker is the other aspect of Louk grammar that does not map to an existing Vue construct.
+    '2': {name: punctuation.definition.tag.static.louk}
+  patterns:
+  - name: string.louk
+    begin: ^\s+
+    end: (?=^([^\s]*)(,))
+    patterns:
+    - include: source.js
+
+- comment: Style section marker
+  name: meta.tag.vue.louk
+  begin: ^(style)(,)
+  # Does a lookahead to match the next section marker, without capturing it.
+  end: (?=^([^\s]*)(,))
+  beginCaptures:
+    '1': {name: entity.name.tag.html.louk}
+    # The static tag marker is the other aspect of Louk grammar that does not map to an existing Vue construct.
+    '2': {name: punctuation.definition.tag.static.louk}
+  patterns:
+  - name: string.louk
+    begin: ^\s+
+    end: (?=^([^\s]*)(,))
+    patterns:
+    - include: source.css
+
+- comment: Template section marker
+  name: meta.tag.vue.louk
+  # Previously 'begin' had an optional space at the end '\s*' but for some reason that broke Atom.
+  begin: ^(template)(,)
+  # Does a lookahead to match the next section marker, without capturing it.
+  end: (?=^([^\s]*)(,))
+  beginCaptures:
+    '1': {name: entity.name.tag.html.louk}
+    # The static tag marker is the other aspect of Louk grammar that does not map to an existing Vue construct.
+    '2': {name: punctuation.definition.tag.static.louk}
+  patterns:
+  - comment: A comment
+    name: comment.line.louk
+    begin: ^\s*(//)(.*)
+    end: $
+    captures:
+      '1': {name: punctuation.comment.begin.louk}
+      '2': {name: comment.content.louk}
+  - comment: A static shorthand attribute
+    name: meta.attribute-with-value.louk
+    begin: ^\s*([>\.#])(\S*)
+    beginCaptures:
+        #Attribute name is used for markup like "#" since those characters represent attribute names.
+      '1': {name: entity.other.attribute-name.louk}
+      '2': {name: string.louk}
+    end: \s
+  - comment: A static attribute
+    name: meta.attribute-with-value.louk
+    begin: ^\s*(["])(\S*)
+    beginCaptures:
+        #The static attribute marker is one of the few aspects of Louk grammar that does not map to an existing Vue construct.
+      '1': {name: punctuation.definition.attribute.static.louk}
+      '2': {name: entity.other.attribute-name.louk}
+    end: $
+    patterns:
+    - name: string.louk
+      match: .*
+
+  - comment: A directive attribute
+    name: meta.directive.vue.louk
+    begin: ^\s*([:@-])(\S+)\s+
+    end: $
+    beginCaptures:
+      '1': {name: punctuation.separator.key-value.html.louk}
+      '2': {name: entity.other.attribute-name.directive.louk}
+    # patterns:
+    # - include: source.js
+
+  # Inline HTML falls back to default Vue styling.
+  - comment: An HTML line
+    name: text.html
+    begin: (?=^\s*<)
+    end: $
+    patterns:
+    - include: text.html.vue
+
+  # Everything else is assumed to be an element.
+  # These last rules are very generic, and must come last!
+  - comment: An element with static content
+    name: meta.tag.any.html.louk
+    #Previously 'begin' had an optional space at the end '\s*' but for some reason that broke Atom.
+    begin: ^\s*([^\s"]*)(")
+    end: $
+    beginCaptures:
+      '1': {name: entity.name.tag.html.louk}
+      #The static tag marker is the other aspect of Louk grammar that does not map to an existing Vue construct.
+      '2': {name: punctuation.definition.tag.static.louk}
+    patterns:
+    - name: string.louk
+      match: .*
+
+  - comment: An element with dynamic content
+    name: meta.tag.any.html.louk
+    #Previously 'begin' had an optional space at the end '\s*' but for some reason that broke Atom.
+    begin: ^\s*([^\s]*)
+    end: $
+    beginCaptures:
+      '1': {name: entity.name.tag.html.louk}
+    # patterns:
+    # - include: source.js
+
+...
