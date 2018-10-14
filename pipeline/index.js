@@ -1,6 +1,7 @@
 var merge = require('merge');
 var fs = require('fs');
 var multigrain = require('multigrain');
+var copy = require('recursive-copy');
 
 var grammarInput = "source/louk.YAML-tmLanguage";
 var settingsInput = "source/settings.yaml";
@@ -12,6 +13,24 @@ module.exports = {
     build: build,
     editors: editors
 };
+
+function build(){
+
+    var grammar = parseGrammar(fs.readFileSync(grammarInput, "utf8"));
+    var settings = parseSettings(fs.readFileSync(settingsInput, "utf8"));
+
+    for(var editor in editors){
+      writeGrammar(editor, grammar);
+      writeSettings(editor, settings);
+      writePackageInfo(editor);
+      writeReadme(editor, readmes);
+      copyAssets(editor);
+    }
+}
+
+function copyAssets(editor){
+    copy("source/assets", "staging" + editor + "/assets");
+}
 
 function buildPackage(packages, editor){
 
@@ -76,20 +95,6 @@ function buildReadme(content, editor){
     }
 
     return output;
-}
-
-function build(){
-
-    var grammar = parseGrammar(fs.readFileSync(grammarInput, "utf8"));
-    var settings = parseSettings(fs.readFileSync(settingsInput, "utf8"));
-
-    for(var editor in editors){
-      writeGrammar(editor, grammar);
-      writeSettings(editor, settings);
-      writePackageInfo(editor);
-      writeReadme(editor, readmes);
-    }
-
 }
 
 function writeGrammar(editor, grammar){
