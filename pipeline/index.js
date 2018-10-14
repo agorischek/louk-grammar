@@ -2,6 +2,7 @@ var merge = require('merge');
 var fs = require('fs');
 var copy = require('fs-sync').copy;
 var multigrain = require('multigrain');
+var clone = require('clone');
 
 var grammarInput = "source/louk.YAML-tmLanguage";
 var settingsInput = "source/settings.yaml";
@@ -39,9 +40,11 @@ function copyAssets(editor){
 
 function buildPackage(packages, editor){
 
-    var general = packages["*"];
-    var specific = packages[editor];
-
+    var general = clone(packages["*"]);
+    var specific = clone(packages[editor]);
+    console.log("editor is " + editor);
+    console.log("general is " + JSON.stringify(general));
+    console.log("specific is " + JSON.stringify(specific));
     var packageInfo = merge(general, specific);
 
     return packageInfo;
