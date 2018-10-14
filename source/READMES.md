@@ -1,8 +1,8 @@
 @@@ * @@@
-#Louk Grammar
+# Louk Grammar
 Syntax highlighting for Louk
 
-<img width="544" src="assets/preview.png" alt="Syntax highlighting example" />
+<img width="400" src="assets/preview.png" alt="Syntax highlighting example" />
 
 ## Installation
 @@@ atom @@@

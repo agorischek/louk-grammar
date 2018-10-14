@@ -1,7 +1,7 @@
-#Louk Grammar
+# Louk Grammar
 Syntax highlighting for Louk
 
-![Syntax highlighting example](assets/preview.png)
+<img width="400" src="assets/preview.png" alt="Syntax highlighting example" />
 
 ## Installation
 ```sh
