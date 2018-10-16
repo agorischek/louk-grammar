@@ -42,9 +42,6 @@ function buildPackage(packages, editor){
 
     var general = clone(packages["*"]);
     var specific = clone(packages[editor]);
-    console.log("editor is " + editor);
-    console.log("general is " + JSON.stringify(general));
-    console.log("specific is " + JSON.stringify(specific));
     var packageInfo = merge(general, specific);
 
     return packageInfo;
