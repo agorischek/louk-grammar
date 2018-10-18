@@ -1,6 +1,5 @@
 var merge = require("merge");
-var fs = require("fs");
-var copy = require("fs-sync").copy;
+var fs = require("fs-extra");
 var multigrain = require("multigrain");
 var clone = require("clone");
 var archiver = require("archiver");
@@ -22,21 +21,39 @@ function build(){
     var settings = parseSettings(fs.readFileSync(settingsInput, "utf8"));
 
     for(var editor in editors){
-      writeGrammar(editor, grammar);
-      writeSettings(editor, settings);
-      writePackageInfo(editor);
-      writeReadme(editor, readmes);
-      copyLicense(editor);
-      copyAssets(editor);
+        fs.ensureDirSync("staging/" + editor);
+        writeGrammar(editor, grammar);
+        writeSettings(editor, settings);
+        writePackageInfo(editor);
+        writeReadme(editor, readmes);
+        copyLicense(editor);
+        copyAssets(editor);
+        bundle(editor);
+    }
+}
+
+function bundle(editor){
+
+    var info = editors[editor];
+
+    if(info.bundle != ""){
+        var output = fs.createWriteStream("./staging/" + editor + "/" + info.bundle);
+        var archive = archiver("zip", {
+          zlib: { level: 1 }
+        });
+        archive.pipe(output);
+        archive.directory('staging/' + editor + "/temp", false);
+        archive.finalize();
+        del.sync(["staging/" + editor + "/**", "!staging/" + editor, "!staging/" + editor + "/" + info.bundle]);
     }
 }
 
 function copyLicense(editor){
-    copy("source/LICENSE", "staging/" + editor + "/LICENSE", {overwrite: true});
+    fs.copySync("source/LICENSE", "staging/" + editor + "/LICENSE", {overwrite: true});
 }
 
 function copyAssets(editor){
-    copy("source/assets", "staging/" + editor + "/assets", {overwrite: true});
+    fs.copySync("source/assets", "staging/" + editor + "/assets", {overwrite: true});
 }
 
 function buildPackage(packages, editor){
@@ -108,7 +125,7 @@ function writeGrammar(editor, grammar){
     var info = editors[editor];
     var dir = "staging/" + editor + "/" + info.grammarSubdir;
 
-    ensureDir(dir);
+    fs.ensureDirSync(dir);
 
     fs.writeFileSync(dir + info.grammarFile, grammar[info.format]);
 
@@ -120,7 +137,7 @@ function writeSettings(editor, settings){
     var dir = "staging/" + editor + "/" + info.settingsSubdir;
 
     if(info.settingsFile){
-        ensureDir(dir);
+        fs.ensureDirSync(dir);
         fs.writeFileSync(dir + info.settingsFile, settings[info.format]);
     }
 }
@@ -155,10 +172,4 @@ function parseSettings(settings){
     parsedSettings.yaml = settings;
     parsedSettings.cson = multigrain.cson(parsedSettings.yaml, "yaml");
     return parsedSettings;
-}
-
-function ensureDir(dir){
-    if(!fs.existsSync(dir)) {
-        fs.mkdirSync(dir);
-    }
 }
