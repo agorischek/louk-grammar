@@ -1,8 +1,9 @@
-var merge = require('merge');
-var fs = require('fs');
-var copy = require('fs-sync').copy;
-var multigrain = require('multigrain');
-var clone = require('clone');
+var merge = require("merge");
+var fs = require("fs");
+var copy = require("fs-sync").copy;
+var multigrain = require("multigrain");
+var clone = require("clone");
+var archiver = require("archiver");
 
 var grammarInput = "source/louk.YAML-tmLanguage";
 var settingsInput = "source/settings.yaml";

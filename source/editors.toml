@@ -6,6 +6,7 @@ grammarFile = "louk.cson"
 grammarSubdir = "grammars/"
 settingsFile = "language-atom.cson"
 settingsSubdir = "settings/"
+bundle = ""
 
 [sublime]
 format = "plist"
@@ -13,3 +14,12 @@ previewDir = "../../Library/Application Support/Sublime Text 3/Packages/User/"
 distDir = "../louk-editor-sublime/"
 grammarFile = "louk.tmLanguage"
 grammarSubdir = ""
+bundle = ""
+
+[textmate]
+format = "plist"
+previewDir = "../../Library/Application Support/TextMate/Bundles"
+distDir = "../louk-editor-textmate/"
+grammarFile = "louk.tmLanguage"
+grammarSubdir = "Syntaxes/"
+bundle = "Louk.tmbundle"
