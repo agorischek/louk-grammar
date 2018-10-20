@@ -1,5 +1,6 @@
-var gulp = require('gulp');
-var pipeline = require('./pipeline/index.js');
+var gulp = require("gulp");
+var mocha = require("gulp-mocha");
+var pipeline = require("./pipeline/index.js");
 var editors = pipeline.editors;
 
 gulp.task('build', function(done) {
@@ -23,8 +24,13 @@ gulp.task("distribute", function(done){
     done();
 });
 
-gulp.task('default', gulp.series('build', gulp.parallel('preview', 'distribute')));
+gulp.task("test", function(){
+    return gulp.src("test/**/*.js", {read: false})
+        .pipe(mocha());
+});
+
+gulp.task("default", gulp.series("build", gulp.parallel("preview", "distribute"), "test"));
 
 gulp.task('watch', function() {
-    return gulp.watch('/*', gulp.series('build', 'preview', 'distribute'));
+    return gulp.watch("/*", gulp.series("build", "preview", "distribute"));
 });
