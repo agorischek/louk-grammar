@@ -7,7 +7,7 @@ uuid: "444bb94d-ce8b-415d-8683-534f8524ee5a"
 patterns: [
 	{
 		comment: "Script section marker"
-		name: "meta.tag.vue.louk"
+		name: "meta.section.vue.louk"
 		begin: "^(script)(,)"
 		end: "(?=^([^\\s]*)(,))"
 		beginCaptures:
@@ -17,7 +17,7 @@ patterns: [
 				name: "punctuation.definition.tag.static.louk"
 		patterns: [
 			{
-				name: "string.louk"
+				name: "source.js.embedded.html"
 				begin: "^\\s+"
 				end: "(?=^([^\\s]*)(,))"
 				patterns: [
@@ -30,7 +30,7 @@ patterns: [
 	}
 	{
 		comment: "Style section marker"
-		name: "meta.tag.vue.louk"
+		name: "meta.section.vue.louk"
 		begin: "^(style)(,)"
 		end: "(?=^([^\\s]*)(,))"
 		beginCaptures:
@@ -40,7 +40,7 @@ patterns: [
 				name: "punctuation.definition.tag.static.louk"
 		patterns: [
 			{
-				name: "string.louk"
+				name: "source.css.embedded.html"
 				begin: "^\\s+"
 				end: "(?=^([^\\s]*)(,))"
 				patterns: [
@@ -53,7 +53,7 @@ patterns: [
 	}
 	{
 		comment: "Template section marker"
-		name: "meta.tag.vue.louk"
+		name: "meta.section.vue.louk"
 		begin: "^(template)(,)"
 		end: "(?=^([^\\s]*)(,))"
 		beginCaptures:
@@ -143,9 +143,8 @@ patterns: [
 			{
 				comment: "An element with dynamic content"
 				name: "meta.tag.any.html.louk"
-				begin: "^\\s*([^\\s]*)"
-				end: "$"
-				beginCaptures:
+				match: "^\\s*([^\\s]*)"
+				captures:
 					"1":
 						name: "entity.name.tag.html.louk"
 			}

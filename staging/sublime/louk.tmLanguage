@@ -18,7 +18,7 @@
         <key>comment</key>
         <string>Script section marker</string>
         <key>name</key>
-        <string>meta.tag.vue.louk</string>
+        <string>meta.section.vue.louk</string>
         <key>begin</key>
         <string>^(script)(,)</string>
         <key>end</key>
@@ -40,7 +40,7 @@
         <array>
           <dict>
             <key>name</key>
-            <string>string.louk</string>
+            <string>source.js.embedded.html</string>
             <key>begin</key>
             <string>^\s+</string>
             <key>end</key>
@@ -59,7 +59,7 @@
         <key>comment</key>
         <string>Style section marker</string>
         <key>name</key>
-        <string>meta.tag.vue.louk</string>
+        <string>meta.section.vue.louk</string>
         <key>begin</key>
         <string>^(style)(,)</string>
         <key>end</key>
@@ -81,7 +81,7 @@
         <array>
           <dict>
             <key>name</key>
-            <string>string.louk</string>
+            <string>source.css.embedded.html</string>
             <key>begin</key>
             <string>^\s+</string>
             <key>end</key>
@@ -100,7 +100,7 @@
         <key>comment</key>
         <string>Template section marker</string>
         <key>name</key>
-        <string>meta.tag.vue.louk</string>
+        <string>meta.section.vue.louk</string>
         <key>begin</key>
         <string>^(template)(,)</string>
         <key>end</key>
@@ -275,11 +275,9 @@
             <string>An element with dynamic content</string>
             <key>name</key>
             <string>meta.tag.any.html.louk</string>
-            <key>begin</key>
+            <key>match</key>
             <string>^\s*([^\s]*)</string>
-            <key>end</key>
-            <string>$</string>
-            <key>beginCaptures</key>
+            <key>captures</key>
             <dict>
               <key>1</key>
               <dict>
