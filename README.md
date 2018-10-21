@@ -23,7 +23,7 @@ This repository uses gulp tasks for its build pipeline:
 To publish package updates:
 
 1. Ensure all editor package repositories are cloned locally as peers of this repository.
-2. Update the `version` in `source/package.json` according to semantic versioning. The version chose here will be used for all following steps. Note: the `version` in this repository's root package is **not** used for versioning the editor packages.
+2. Update the `version` in `source/package.json` according to semantic versioning. The version chosen here should then be used for all following steps. (Note: the `version` in this repository's root package is **not** used for versioning the individual editor packages.)
 3. Run `gulp`.
 4. For each editor-specific repository, create and push a Git tag with the new version: `git tag v_._._` and `git push tag v_._._`.
 5. Publish each individual editor package according to their particular steps:
