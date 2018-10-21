@@ -11,23 +11,12 @@ This is the core development repository for the Louk language grammar, which pro
 ## Tasks
 This repository uses gulp tasks for its build pipeline:
 
-### Build
-`gulp build` processes the source files and writes the output to the `staging` directory.
-
-### Preview
-`gulp preview` copies all files from the `staging` subdirectories to their respective preview directories for local testing.
-
-### Distribute
-`gulp distribute` copies all files from the `staging` subdirectories to their respective distribution directories for publishing.
-
-### Test
-`gulp test` runs basic sanity checks on the built packages.
-
-### Watch
-`gulp watch` watches for changes in the source folder, then runs `build` and `preview`.
-
-### Default
-`gulp` runs `build`, `preview`, `distribute`, and `test`.
+* `gulp build` processes the source files and writes the output to the `staging` directory.
+* `gulp preview` copies all files from the `staging` subdirectories to their respective preview directories for local testing.
+* `gulp distribute` copies all files from the `staging` subdirectories to their respective distribution directories for publishing.
+* `gulp test` runs basic sanity checks on the built packages.
+* `gulp watch` watches for changes in the source folder, then runs `build` and `preview`.
+* `gulp` runs `build`, `preview`, `distribute`, and `test`.
 
 ## Publishing
 
