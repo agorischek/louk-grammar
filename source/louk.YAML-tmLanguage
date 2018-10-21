@@ -7,7 +7,7 @@ uuid: 444bb94d-ce8b-415d-8683-534f8524ee5a
 patterns:
 
 - comment: Script section marker
-  name: meta.tag.vue.louk
+  name: meta.section.vue.louk
   begin: ^(script)(,)
   # Does a lookahead to match the next section marker, without capturing it.
   end: (?=^([^\s]*)(,))
@@ -23,7 +23,7 @@ patterns:
     - include: source.js
 
 - comment: Style section marker
-  name: meta.tag.vue.louk
+  name: meta.section.vue.louk
   begin: ^(style)(,)
   # Does a lookahead to match the next section marker, without capturing it.
   end: (?=^([^\s]*)(,))
@@ -39,7 +39,7 @@ patterns:
     - include: source.css
 
 - comment: Template section marker
-  name: meta.tag.vue.louk
+  name: meta.section.vue.louk
   # Previously 'begin' had an optional space at the end '\s*' but for some reason that broke Atom.
   begin: ^(template)(,)
   # Does a lookahead to match the next section marker, without capturing it.
