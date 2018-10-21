@@ -16,7 +16,8 @@ patterns:
     # The static tag marker is the other aspect of Louk grammar that does not map to an existing Vue construct.
     '2': {name: punctuation.definition.tag.static.louk}
   patterns:
-  - name: string.louk
+    # This name tells the editor to use that language's commenting syntax.
+  - name: source.js.embedded.html
     begin: ^\s+
     end: (?=^([^\s]*)(,))
     patterns:
@@ -32,7 +33,8 @@ patterns:
     # The static tag marker is the other aspect of Louk grammar that does not map to an existing Vue construct.
     '2': {name: punctuation.definition.tag.static.louk}
   patterns:
-  - name: string.louk
+  # This name tells the editor to use that language's commenting syntax.
+  - name: source.css.embedded.html
     begin: ^\s+
     end: (?=^([^\s]*)(,))
     patterns:
