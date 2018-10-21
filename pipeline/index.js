@@ -3,6 +3,7 @@ var fs = require("fs-extra");
 var multigrain = require("multigrain");
 var clone = require("clone");
 var archiver = require("archiver");
+var del = require("del");
 
 var grammarInput = "source/louk.YAML-tmLanguage";
 var settingsInput = "source/settings.yaml";
