@@ -25,7 +25,10 @@ To publish package updates:
 1. Ensure all editor package repositories are cloned locally as peers of this repository.
 2. Update `*.version` in `source/packages.yaml` according to semantic versioning. The version chosen here should then be used for all following steps. (Note: the `version` in this repository's root package is **not** used for versioning the individual editor packages.)
 3. Run `gulp`.
-4. For each editor-specific repository, create and push a Git tag with the new version: `git tag v_._._` and `git push origin tag v_._._`.
-5. Publish each individual editor package according to their particular steps:
+4. Commit and push the updated files to each individual editor package's repository.
+5. In each editor-specific repository, create and push a Git tag with the new version: `git tag v_._._` and `git push origin tag v_._._`.
+6. Publish each individual editor package according to their particular steps:
     * For Atom, publish using the specific tag: `apm publish --tag v_._._`.
+7. Verify the new version has been published to each package service:
+    * Atom: [`language-louk`](http://atom.io/packages/language-louk)
 
