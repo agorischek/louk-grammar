@@ -32,5 +32,5 @@ gulp.task("test", function(){
 gulp.task("default", gulp.series("build", gulp.parallel("preview", "distribute"), "test"));
 
 gulp.task('watch', function() {
-    return gulp.watch("/*", gulp.series("build", "preview", "distribute"));
+    return gulp.watch("/source/*", gulp.series("build", "preview", "distribute"));
 });
