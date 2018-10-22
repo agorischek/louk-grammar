@@ -68,10 +68,16 @@ function buildPackage(packages, editor){
 
 function buildSettings(settings, editor){
 
-    var general = clone(settings["*"]);
+    var settingsInfo = {};
     var specific = clone(settings[editor]);
-    var settingsInfo = merge(general, specific);
 
+    if(settings["*"]){
+        var general = clone(settings["*"]);
+        settingsInfo = merge(general, specific);
+    }
+    else{
+        settingsInfo = specific
+    }
     return settingsInfo;
 }
 
