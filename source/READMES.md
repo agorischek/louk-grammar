@@ -11,7 +11,10 @@ apm install language-louk
 ```
 
 @@@ sublime @@@
-These are installation instructions for Sublime.
+Install via the Sublime [Package Manager](https://sublime.wbond.net/installation).
+1. Open the Command Palette (`⌘+shift+p` on Mac, `ctrl+shift+p` on Windows)
+2. Type `install`, then choose `Package Control: Install Package`
+3. Type `louk` and select it.
 
 @@@ * @@@
 ## About
