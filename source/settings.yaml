@@ -1,4 +1,13 @@
 ---
-.text.html.vue.louk:
-  editor:
-    commentStart: "// "
+"*": ""
+atom:
+  .text.html.vue.louk:
+    editor:
+      commentStart: "// "
+sublime:
+  name: Comments
+  scope: text.html.vue.louk
+  settings:
+    shellVariables:
+      - name: TM_COMMENT_START
+        value: //

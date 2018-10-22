@@ -66,6 +66,69 @@ function buildPackage(packages, editor){
     return packageInfo;
 }
 
+function buildSettings(settings, editor){
+
+    var general = clone(settings["*"]);
+    var specific = clone(settings[editor]);
+    var settingsInfo = merge(general, specific);
+
+    return settingsInfo;
+}
+
+function writeGrammar(editor, grammar){
+
+    var info = editors[editor];
+    var dir = "staging/" + editor + "/" + info.grammarSubdir;
+
+    fs.ensureDirSync(dir);
+
+    fs.writeFileSync(dir + info.grammarFile, grammar[info.format]);
+
+}
+
+function writeSettings(editor, settings){
+
+    var info = editors[editor];
+    var dir = "staging/" + editor + "/" + info.settingsSubdir;
+
+    if(info.settingsFile){
+
+        var settingsInfo = multigrain[info.format](buildSettings(settings, editor));
+
+        fs.ensureDirSync(dir);
+        fs.writeFileSync(dir + info.settingsFile, settingsInfo);
+    }
+}
+
+function writePackageInfo(editor){
+
+    var distFile = "staging/" + editor + "/package.json";
+    var packageInfo = multigrain.json(buildPackage(packages, editor));
+    fs.writeFileSync(distFile, packageInfo);
+
+}
+
+function writeReadme(editor, content){
+
+    var distFile  = "staging/" + editor + "/README.md";
+    var readme = buildReadme(content, editor);
+    fs.writeFileSync(distFile , readme);
+
+}
+
+function parseGrammar(grammar){
+    var parsedGrammar = {};
+    parsedGrammar.yaml = grammar;
+    parsedGrammar.json = multigrain.json(parsedGrammar.yaml, "yaml");
+    parsedGrammar.cson = multigrain.cson(parsedGrammar.json, "json");
+    parsedGrammar.plist = multigrain.plist(parsedGrammar.json, "json");
+    return parsedGrammar;
+}
+
+function parseSettings(settings){
+    return multigrain.parse(settings, "yaml");
+}
+
 function buildReadme(content, editor){
 
     var input = content;
@@ -119,58 +182,4 @@ function buildReadme(content, editor){
     }
 
     return output;
-}
-
-function writeGrammar(editor, grammar){
-
-    var info = editors[editor];
-    var dir = "staging/" + editor + "/" + info.grammarSubdir;
-
-    fs.ensureDirSync(dir);
-
-    fs.writeFileSync(dir + info.grammarFile, grammar[info.format]);
-
-}
-
-function writeSettings(editor, settings){
-
-    var info = editors[editor];
-    var dir = "staging/" + editor + "/" + info.settingsSubdir;
-
-    if(info.settingsFile){
-        fs.ensureDirSync(dir);
-        fs.writeFileSync(dir + info.settingsFile, settings[info.format]);
-    }
-}
-
-function writePackageInfo(editor){
-
-    var distFile = "staging/" + editor + "/package.json";
-    var packageInfo = multigrain.json(buildPackage(packages, editor));
-    fs.writeFileSync(distFile, packageInfo);
-
-}
-
-function writeReadme(editor, content){
-
-    var distFile  = "staging/" + editor + "/README.md";
-    var readme = buildReadme(content, editor);
-    fs.writeFileSync(distFile , readme);
-
-}
-
-function parseGrammar(grammar){
-    var parsedGrammar = {};
-    parsedGrammar.yaml = grammar;
-    parsedGrammar.json = multigrain.json(parsedGrammar.yaml, "yaml");
-    parsedGrammar.cson = multigrain.cson(parsedGrammar.json, "json");
-    parsedGrammar.plist = multigrain.plist(parsedGrammar.json, "json");
-    return parsedGrammar;
-}
-
-function parseSettings(settings){
-    var parsedSettings = {};
-    parsedSettings.yaml = settings;
-    parsedSettings.cson = multigrain.cson(parsedSettings.yaml, "yaml");
-    return parsedSettings;
 }
