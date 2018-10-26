@@ -16,6 +16,15 @@ grammarSubdir = ""
 settingsFile = "Settings.tmPreferences"
 settingsSubdir = ""
 
+[vscode]
+format = "json"
+previewDir = "../../Desktop"
+distDir = "../louk-editor-vscode/"
+grammarFile = "louk.tmLanguage.json"
+grammarSubdir = "syntaxes/"
+settingsFile = "language-settings.tmPreferences"
+settingsSubdir = ""
+
 [textmate]
 format = "plist"
 previewDir = "../../Library/Application Support/TextMate/Bundles"

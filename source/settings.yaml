@@ -10,3 +10,11 @@ sublime:
     shellVariables:
       - name: TM_COMMENT_START
         value: //
+vscode:
+  contributes:
+    languages:
+    - id: markdown
+    grammars:
+    - language: markdown
+      scopeName: text.html.vue.louk
+      path: ./syntaxes/louk.tmLanguage.json

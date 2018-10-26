@@ -1,0 +1,181 @@
+{
+	"name": "Louk",
+	"scopeName": "text.html.vue.louk",
+	"fileTypes": [
+		"louk"
+	],
+	"uuid": "444bb94d-ce8b-415d-8683-534f8524ee5a",
+	"patterns": [
+		{
+			"comment": "Script section marker",
+			"name": "meta.section.vue.louk",
+			"begin": "^(script)(,)",
+			"end": "(?=^([^\\s]*)(,))",
+			"beginCaptures": {
+				"1": {
+					"name": "entity.name.tag.html.louk"
+				},
+				"2": {
+					"name": "punctuation.definition.tag.static.louk"
+				}
+			},
+			"patterns": [
+				{
+					"name": "source.js.embedded.html",
+					"begin": "^\\s+",
+					"end": "(?=^([^\\s]*)(,))",
+					"patterns": [
+						{
+							"include": "source.js"
+						}
+					]
+				}
+			]
+		},
+		{
+			"comment": "Style section marker",
+			"name": "meta.section.vue.louk",
+			"begin": "^(style)(,)",
+			"end": "(?=^([^\\s]*)(,))",
+			"beginCaptures": {
+				"1": {
+					"name": "entity.name.tag.html.louk"
+				},
+				"2": {
+					"name": "punctuation.definition.tag.static.louk"
+				}
+			},
+			"patterns": [
+				{
+					"name": "source.css.embedded.html",
+					"begin": "^\\s+",
+					"end": "(?=^([^\\s]*)(,))",
+					"patterns": [
+						{
+							"include": "source.css"
+						}
+					]
+				}
+			]
+		},
+		{
+			"comment": "Template section marker",
+			"name": "meta.section.vue.louk",
+			"begin": "^(template)(,)",
+			"end": "(?=^([^\\s]*)(,))",
+			"beginCaptures": {
+				"1": {
+					"name": "entity.name.tag.html.louk"
+				},
+				"2": {
+					"name": "punctuation.definition.tag.static.louk"
+				}
+			},
+			"patterns": [
+				{
+					"comment": "A comment",
+					"name": "comment.line.louk",
+					"begin": "^\\s*(//)(.*)",
+					"end": "$",
+					"captures": {
+						"1": {
+							"name": "punctuation.comment.begin.louk"
+						},
+						"2": {
+							"name": "comment.content.louk"
+						}
+					}
+				},
+				{
+					"comment": "A static shorthand attribute",
+					"name": "meta.attribute-with-value.louk",
+					"begin": "^\\s*([>\\.#])(\\S*)",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.other.attribute-name.louk"
+						},
+						"2": {
+							"name": "string.louk"
+						}
+					},
+					"end": "\\s"
+				},
+				{
+					"comment": "A static attribute",
+					"name": "meta.attribute-with-value.louk",
+					"begin": "^\\s*([\"])(\\S*)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.attribute.static.louk"
+						},
+						"2": {
+							"name": "entity.other.attribute-name.louk"
+						}
+					},
+					"end": "$",
+					"patterns": [
+						{
+							"name": "string.louk",
+							"match": ".*"
+						}
+					]
+				},
+				{
+					"comment": "A directive attribute",
+					"name": "meta.directive.vue.louk",
+					"begin": "^\\s*([:@-])(\\S+)\\s+",
+					"end": "$",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.separator.key-value.html.louk"
+						},
+						"2": {
+							"name": "entity.other.attribute-name.directive.louk"
+						}
+					}
+				},
+				{
+					"comment": "An HTML line",
+					"name": "text.html",
+					"begin": "(?=^\\s*<)",
+					"end": "$",
+					"patterns": [
+						{
+							"include": "text.html.vue"
+						}
+					]
+				},
+				{
+					"comment": "An element with static content",
+					"name": "meta.tag.any.html.louk",
+					"begin": "^\\s*([^\\s\"]*)(\")",
+					"end": "$",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.tag.html.louk"
+						},
+						"2": {
+							"name": "punctuation.definition.tag.static.louk"
+						}
+					},
+					"patterns": [
+						{
+							"name": "string.louk",
+							"match": ".*"
+						}
+					]
+				},
+				{
+					"comment": "An element with dynamic content",
+					"name": "meta.tag.any.html.louk",
+					"match": "^\\s*([^\\s]*)",
+					"captures": {
+						"1": {
+							"name": "entity.name.tag.html.louk"
+						}
+					}
+				}
+			]
+		}
+	]
+}
