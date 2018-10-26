@@ -9,9 +9,9 @@ settingsSubdir = "settings/"
 
 [sublime]
 format = "plist"
-previewDir = "../../Library/Application Support/Sublime Text 3/Packages/User/"
+previewDir = "../../Library/Application Support/Sublime Text 3/Packages/User/Louk"
 distDir = "../louk-editor-sublime/"
-grammarFile = "louk.tmLanguage"
+grammarFile = "Louk.tmLanguage"
 grammarSubdir = ""
 settingsFile = "Settings.tmPreferences"
 settingsSubdir = ""
