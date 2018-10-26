@@ -1,1 +1,9 @@
-{"version":"0.0.7","description":"Syntax highlighting for Louk language","license":"MIT","keywords":["vue"],"name":"Louk"}
+{
+	"version": "0.0.7",
+	"description": "Syntax highlighting for Louk language",
+	"license": "MIT",
+	"keywords": [
+		"vue"
+	],
+	"name": "Louk"
+}
