@@ -6,7 +6,6 @@ grammarFile = "louk.cson"
 grammarSubdir = "grammars/"
 settingsFile = "language-atom.cson"
 settingsSubdir = "settings/"
-bundle = ""
 
 [sublime]
 format = "plist"
@@ -16,7 +15,6 @@ grammarFile = "louk.tmLanguage"
 grammarSubdir = ""
 settingsFile = "Settings.tmPreferences"
 settingsSubdir = ""
-bundle = ""
 
 [textmate]
 format = "plist"
