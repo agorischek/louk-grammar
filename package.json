@@ -31,7 +31,7 @@
     "gulp-mocha": "^6.0.0",
     "merge": "^1.2.0",
     "mocha": "^5.2.0",
-    "multigrain": "^0.1.1"
+    "multigrain": "^0.2.0"
   },
   "dependencies": {}
 }
