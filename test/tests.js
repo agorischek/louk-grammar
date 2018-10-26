@@ -9,7 +9,7 @@ var editors = multigrain.parse(fs.readFileSync("./source/editors.toml", "utf8"),
 describe("Distributions", function(){
     it("should exist", function(){
         for(var editor in editors){
-            if(editors[editor].bundle === ""){
+            if(!editors[editor].bundle){
                 assert.equal(fs.existsSync(editors[editor].distDir + "package.json"), true);
             }
             else{
