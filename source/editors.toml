@@ -18,7 +18,7 @@ settingsSubdir = ""
 
 [vscode]
 format = "json"
-previewDir = "../../Desktop"
+previewDir = "../../.vscode/extensions/louk/"
 distDir = "../louk-editor-vscode/"
 grammarFile = "louk.tmLanguage.json"
 grammarSubdir = "syntaxes/"
