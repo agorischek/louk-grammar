@@ -5,6 +5,7 @@ var clone = require("clone");
 var archiver = require("archiver");
 var del = require("del");
 
+var buildReadme = require("./doc-builder.js");
 var grammarInput = "source/louk.YAML-tmLanguage";
 var settingsInput = "source/settings.yaml";
 var editors = multigrain.parse(fs.readFileSync("./source/editors.toml", "utf8"), "toml");
@@ -22,7 +23,8 @@ function build(){
     var settings = parseSettings(fs.readFileSync(settingsInput, "utf8"));
 
     for(var editor in editors){
-        fs.ensureDirSync("staging/" + editor);
+        ensureDir(editor);
+        clearDir(editor);
         writeGrammar(editor, grammar);
         writeSettings(editor, settings);
         writePackageInfo(editor);
@@ -33,11 +35,19 @@ function build(){
     }
 }
 
+function clearDir(editor){
+    fs.remove("staging/" + editor + "/**/*.*");
+}
+
+function ensureDir(editor){
+    fs.ensureDirSync("staging/" + editor);
+}
+
 function bundle(editor){
 
     var info = editors[editor];
 
-    if(info.bundle != ""){
+    if(info.bundle){
         var output = fs.createWriteStream("./staging/" + editor + "/" + info.bundle);
         var archive = archiver("zip", {
           zlib: { level: 1 }
@@ -68,17 +78,21 @@ function buildPackage(packages, editor){
 
 function buildSettings(settings, editor){
 
-    var settingsInfo = {};
+    var general = clone(settings["*"]);
     var specific = clone(settings[editor]);
 
-    if(settings["*"]){
-        var general = clone(settings["*"]);
-        settingsInfo = merge(general, specific);
+    if(general && specific){
+        return merge(general, specific);
+    }
+    else if(general){
+        return general;
+    }
+    else if (specific){
+        return specific;
     }
     else{
-        settingsInfo = specific
+        return null;
     }
-    return settingsInfo;
 }
 
 function writeGrammar(editor, grammar){
