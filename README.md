@@ -1,5 +1,5 @@
 # Louk Grammar
-Syntax highlighting for Louk
+Cross-editor syntax highlighting for [Louk](https://louk-lang.org)
 
 ## About
 This is the core development repository for the Louk language grammar, which provides syntax highlighting to text editors. All grammar and metadata changes must be made in this repository, then built into standalone repositories for distribution. For individual editor packages and repositories, see:
