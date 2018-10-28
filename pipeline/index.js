@@ -4,8 +4,8 @@ var multigrain = require("multigrain");
 var clone = require("clone");
 var archiver = require("archiver");
 var del = require("del");
+var apposite = require("apposite");
 
-var buildReadme = require("./doc-builder.js");
 var grammarInput = "source/louk.YAML-tmLanguage";
 var settingsInput = "source/settings.yaml";
 var editors = multigrain.parse(fs.readFileSync("./source/editors.toml", "utf8"), "toml");
@@ -131,7 +131,7 @@ function writePackageInfo(editor){
 function writeReadme(editor, content){
 
     var distFile  = "staging/" + editor + "/README.md";
-    var readme = buildReadme(content, editor);
+    var readme = apposite.render(content, editor);
     fs.writeFileSync(distFile , readme);
 
 }
