@@ -1,8 +1,7 @@
 # Louk Grammar
 Syntax highlighting for [Louk](https://www.louk-lang.org)
 
-![Syntax highlighting example](assets/preview.png)
-
+<img alt="Syntax highlighting example" src="assets/preview.png" />
 ## Installation
 Install via the Sublime [Package Manager](https://sublime.wbond.net/installation).
 1. Open the Command Palette (`⌘+shift+p` on Mac, `ctrl+shift+p` on Windows)

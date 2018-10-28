@@ -2,8 +2,12 @@
 # Louk Grammar
 Syntax highlighting for [Louk](https://www.louk-lang.org)
 
+@@@ atom sublime textmate @@@
+<img alt="Syntax highlighting example" src="assets/preview.png" />
+@@@ vscode @@@
 ![Syntax highlighting example](assets/preview.png)
 
+@@@ * @@@
 ## Installation
 @@@ atom @@@
 ```sh

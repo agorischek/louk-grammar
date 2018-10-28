@@ -1,8 +1,7 @@
 # Louk Grammar
 Syntax highlighting for [Louk](https://www.louk-lang.org)
 
-![Syntax highlighting example](assets/preview.png)
-
+<img alt="Syntax highlighting example" src="assets/preview.png" />
 ## Installation
 ```sh
 apm install language-louk
