@@ -5,7 +5,7 @@ Cross-editor syntax highlighting for [Louk](https://louk-lang.org)
 This is the core development repository for the Louk language grammar, which provides syntax highlighting to text editors. All grammar and metadata changes must be made in this repository, then built into standalone repositories for distribution. For individual editor packages and repositories, see:
 1. Atom: [`language-louk` package](http://atom.io/packages/language-louk) | [`louk-editor-atom` repository](https://github.com/louk-lang/louk-editor-atom)
 2. Sublime [`Louk` package](https://packagecontrol.io/packages/Louk) | [`louk-editor-sublime` repository](https://github.com/louk-lang/louk-editor-sublime)
-3. VS Code ['Louk' package](https://marketplace.visualstudio.com/items?itemName=louk-lang.louk) | [`louk-editor-vscode` repository](https://github.com/louk-lang/louk-editor-vscode)
+3. VS Code [`Louk` package](https://marketplace.visualstudio.com/items?itemName=louk-lang.louk) | [`louk-editor-vscode` repository](https://github.com/louk-lang/louk-editor-vscode)
 
 ## Tasks
 This repository uses gulp tasks for its build pipeline:
