@@ -17,4 +17,9 @@ describe("Distributions", function(){
             }
         }
     });
+    it("should not have undefined folders", function(){
+        for(var editor in editors){
+            assert.notEqual(fs.existsSync(editors[editor].distDir + "undefined"), true);
+        }
+    });
 });
