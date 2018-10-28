@@ -9,6 +9,7 @@
 	"homepage": "https://louk-lang.org",
 	"name": "louk",
 	"displayName": "Louk",
+	"icon": "assets/logo.png",
 	"publisher": "louk-lang",
 	"engines": {
 		"vscode": "^1.0.0"
