@@ -28,7 +28,8 @@ To publish package updates:
 5. In each editor-specific repository, create and push a Git tag with the new version: `git tag v_._._` and `git push origin tag v_._._`.
 6. Publish each individual editor package according to their particular steps:
     * For Atom, publish using the specific tag: `apm publish --tag v_._._`.
-    * No additional steps are necessary for Sublime. Package Control will periodically scan the repo for new releases.
+    * For Sublime, no additional steps are necessary. Package Control will periodically scan the repo for new releases.
+    * For VS Code, publish using the version: `vsce publish _._._`.
 7. Verify the new version has been published to each package service:
     * Atom: [`language-louk`](http://atom.io/packages/language-louk)
     * Sublime: [`Louk`](https://packagecontrol.io/packages/Louk) (publishing will be delayed)
