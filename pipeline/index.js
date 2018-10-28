@@ -98,7 +98,13 @@ function buildSettings(settings, editor){
 function writeGrammar(editor, grammar){
 
     var info = editors[editor];
-    var dir = "staging/" + editor + "/" + info.grammarSubdir;
+    var dir = "";
+    if(info.grammarSubdir){
+        dir = "staging/" + editor + "/" + info.grammarSubdir;
+    }
+    else{
+        dir = "staging/" + editor + "/";
+    }
 
     fs.ensureDirSync(dir);
 
@@ -109,7 +115,13 @@ function writeGrammar(editor, grammar){
 function writeSettings(editor, settings){
 
     var info = editors[editor];
-    var dir = "staging/" + editor + "/" + info.settingsSubdir;
+    var dir = "";
+    if(info.settingsSubdir){
+        dir = "staging/" + editor + "/" + info.settingsSubdir;
+    }
+    else{
+        dir = "staging/" + editor + "/";
+    }
 
     if(info.settingsFile){
 
