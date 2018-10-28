@@ -22,7 +22,7 @@ previewDir = "../../.vscode/extensions/louk/"
 distDir = "../louk-editor-vscode/"
 grammarFile = "louk.tmLanguage.json"
 grammarSubdir = "syntaxes/"
-settingsFile = "language-settings.tmPreferences"
+settingsFile = "language-configuration.json"
 settingsSubdir = ""
 
 [textmate]
