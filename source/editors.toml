@@ -12,9 +12,7 @@ format = "plist"
 previewDir = "../../Library/Application Support/Sublime Text 3/Packages/User/Louk"
 distDir = "../louk-editor-sublime/"
 grammarFile = "Louk.tmLanguage"
-grammarSubdir = ""
 settingsFile = "Settings.tmPreferences"
-settingsSubdir = ""
 
 [vscode]
 format = "json"
@@ -23,7 +21,6 @@ distDir = "../louk-editor-vscode/"
 grammarFile = "louk.tmLanguage.json"
 grammarSubdir = "syntaxes/"
 settingsFile = "language-configuration.json"
-settingsSubdir = ""
 
 [textmate]
 format = "plist"
