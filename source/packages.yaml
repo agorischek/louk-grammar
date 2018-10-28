@@ -5,6 +5,8 @@
   license: MIT
   keywords:
   - vue
+  author: Alex Gorischek
+  homepage: https://louk-lang.org
 atom:
   name: language-louk
   repository: https://github.com/louk-lang/louk-editor-atom.git
