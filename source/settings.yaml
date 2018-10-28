@@ -13,3 +13,18 @@ sublime:
 vscode:
   comments:
     lineComment: "//"
+  brackets:
+  - ["{", "}"]
+  - ["[", "]"]
+  - ["(", ")"]
+  autoClosingPairs:
+  - ["{", "}"]
+  - ["[", "]"]
+  - ["(", ")"]
+  - ["'", "'"]
+  surroundingPairs:
+  - ["{", "}"]
+  - ["[", "]"]
+  - ["(", ")"]
+  - ["\"", "\""]
+  - ["'", "'"]
