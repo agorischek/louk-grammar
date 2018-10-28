@@ -4,5 +4,37 @@
 	"license": "MIT",
 	"keywords": [
 		"vue"
-	]
+	],
+	"author": "Alex Gorischek",
+	"homepage": "https://louk-lang.org",
+	"name": "louk",
+	"displayName": "Louk",
+	"publisher": "louk-lang",
+	"engines": {
+		"vscode": "^1.0.0"
+	},
+	"categories": [
+		"Programming Languages"
+	],
+	"contributes": {
+		"languages": [
+			{
+				"id": "louk",
+				"aliases": [
+					"Louk"
+				],
+				"extensions": [
+					".louk"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "louk",
+				"scopeName": "text.html.vue.louk",
+				"path": "./syntaxes/louk.tmLanguage.json"
+			}
+		]
+	}
 }

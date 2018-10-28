@@ -5,5 +5,7 @@
 	"keywords": [
 		"vue"
 	],
+	"author": "Alex Gorischek",
+	"homepage": "https://louk-lang.org",
 	"name": "Louk"
 }
