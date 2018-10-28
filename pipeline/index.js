@@ -12,6 +12,8 @@ var editors = multigrain.parse(fs.readFileSync("./source/editors.toml", "utf8"),
 var packages = multigrain.parse(fs.readFileSync("./source/packages.yaml", "utf8"), "yaml");
 var readmes = fs.readFileSync("./source/READMES.md", "utf8");
 
+multigrain.options.json.build({maxLength: 20});
+
 module.exports = {
     build: build,
     editors: editors
