@@ -18,3 +18,23 @@ textmate:
   contactEmailRot13: alex.gorischek@gmail.com
   contactName: Alex Gorischek
   uuid: D60CC376-8007-47D3-8231-5E3B5C6963BB
+vscode:
+    name: louk
+    displayName: Louk
+    publisher: louk-lang
+    engines:
+      vscode: "^1.0.0"
+    categories:
+    - Programming Languages
+    contributes:
+      languages:
+      - id: louk
+        aliases:
+        - Louk
+        extensions:
+        - ".louk"
+        configuration: "./language-configuration.json"
+      grammars:
+      - language: louk
+        scopeName: text.html.vue.louk
+        path: "./syntaxes/louk.tmLanguage.json"
