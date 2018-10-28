@@ -1,3 +1,13 @@
+# Options
+# format: Serial data format for grammar and settings output
+# previewDir: Directory for previewing the bundle on your development machine
+# distDir: Directory for bundle distribution
+# grammarFile: File name for grammar output
+# grammarSubdir: Subdirectory for grammar file in bundle, if applicable
+# settingsFile: File name for settings output
+# settingsSubDir: Subdirectory for settings file in bundle, if applicable
+# bundle: Name of zipped archive for bundle, if applicable
+
 [atom]
 format = "cson"
 previewDir = "../../.atom/packages/language-louk/"
