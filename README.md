@@ -5,11 +5,14 @@ Cross-editor syntax highlighting for [Louk](https://louk-lang.org)
 [![Sublime editor](https://img.shields.io/badge/Sublime%20Text-editor-green.svg?style=flat-square)](https://packagecontrol.io/packages/Louk)
 [![VS Code editor](https://img.shields.io/badge/VS%20Code-editor-green.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=louk-lang.louk)
 
+## Installation
+To install editor extensions, see:
+1. Atom: [`language-louk` package](http://atom.io/packages/language-louk)
+2. Sublime [`Louk` package](https://packagecontrol.io/packages/Louk)
+3. VS Code [`Louk` package](https://marketplace.visualstudio.com/items?itemName=louk-lang.louk)
+
 ## About
-This is the core development repository for the Louk language grammar, which provides syntax highlighting to text editors. All grammar and metadata changes must be made in this repository, then built into standalone repositories for distribution. For individual editor packages and repositories, see:
-1. Atom: [`language-louk` package](http://atom.io/packages/language-louk) | [`louk-editor-atom` repository](https://github.com/louk-lang/louk-editor-atom)
-2. Sublime [`Louk` package](https://packagecontrol.io/packages/Louk) | [`louk-editor-sublime` repository](https://github.com/louk-lang/louk-editor-sublime)
-3. VS Code [`Louk` package](https://marketplace.visualstudio.com/items?itemName=louk-lang.louk) | [`louk-editor-vscode` repository](https://github.com/louk-lang/louk-editor-vscode)
+This is the core development repository for the Louk language grammar, which provides syntax highlighting to text editors. All grammar and metadata changes must be made in this repository, then built into standalone repositories for distribution.
 
 ## Tasks
 This repository uses gulp tasks for its build pipeline:
@@ -38,3 +41,10 @@ To publish package updates:
     * Atom: [`language-louk`](http://atom.io/packages/language-louk)
     * Sublime: [`Louk`](https://packagecontrol.io/packages/Louk) (publishing will be delayed)
     * VS Code: [`Louk`](https://marketplace.visualstudio.com/items?itemName=louk-lang.louk)
+
+## Editor Repos
+
+For individual editor repositories, see:
+1. Atom: [`louk-editor-atom` repository](https://github.com/louk-lang/louk-editor-atom)
+2. Sublime: [`louk-editor-sublime` repository](https://github.com/louk-lang/louk-editor-sublime)
+3. VS Code: [`louk-editor-vscode` repository](https://github.com/louk-lang/louk-editor-vscode)
