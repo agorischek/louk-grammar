@@ -1,6 +1,10 @@
 # Louk Grammar
 Cross-editor syntax highlighting for [Louk](https://louk-lang.org)
 
+[![Atom editor](https://img.shields.io/badge/Atom-editor-green.svg?style=flat-square)](http://atom.io/packages/language-louk)
+[![Sublime editor](https://img.shields.io/badge/Sublime%20Text-editor-green.svg?style=flat-square)](https://packagecontrol.io/packages/Louk)
+[![VS Code editor](https://img.shields.io/badge/VS%20Code-editor-green.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=louk-lang.louk)
+
 ## About
 This is the core development repository for the Louk language grammar, which provides syntax highlighting to text editors. All grammar and metadata changes must be made in this repository, then built into standalone repositories for distribution. For individual editor packages and repositories, see:
 1. Atom: [`language-louk` package](http://atom.io/packages/language-louk) | [`louk-editor-atom` repository](https://github.com/louk-lang/louk-editor-atom)
