@@ -5,6 +5,8 @@ template,
   	a
     >github.com
     .main
+    | continuation
+    |" static continuation
   // Another comment
   	span
   	.main
@@ -13,6 +15,7 @@ template,
     		@keyup.enter cancel
     		-if enabled
     		:class myClass
+            'attr value
     		<div>HTML!/</div>
 script,
     function(x){
