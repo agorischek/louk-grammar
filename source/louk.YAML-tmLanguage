@@ -62,13 +62,13 @@ patterns:
     name: meta.attribute-with-value.louk
     begin: ^\s*([>\.#])(\S*)
     beginCaptures:
-        #Attribute name is used for markup like "#" since those characters represent attribute names.
+        #Attribute name is used for markup like `#` since those characters represent attribute names.
       '1': {name: entity.other.attribute-name.louk}
       '2': {name: string.louk}
     end: \s
   - comment: A static attribute
     name: meta.attribute-with-value.louk
-    begin: ^\s*(["])(\S*)
+    begin: ^\s*(['])(\S*)
     beginCaptures:
         #The static attribute marker is one of the few aspects of Louk grammar that does not map to an existing Vue construct.
       '1': {name: punctuation.definition.attribute.static.louk}
