@@ -87,7 +87,7 @@ patterns: [
 			{
 				comment: "A static attribute"
 				name: "meta.attribute-with-value.louk"
-				begin: "^\\s*([\"])(\\S*)"
+				begin: "^\\s*(['])(\\S*)"
 				beginCaptures:
 					"1":
 						name: "punctuation.definition.attribute.static.louk"

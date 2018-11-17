@@ -172,7 +172,7 @@
             <key>name</key>
             <string>meta.attribute-with-value.louk</string>
             <key>begin</key>
-            <string>^\s*(["])(\S*)</string>
+            <string>^\s*(['])(\S*)</string>
             <key>beginCaptures</key>
             <dict>
               <key>1</key>
