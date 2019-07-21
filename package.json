@@ -32,7 +32,7 @@
     "gulp-mocha": "^6.0.0",
     "merge": "^1.2.1",
     "mocha": "^6.1.4",
-    "multigrain": "^1.0.7"
+    "multigrain": "^1.0.8"
   },
   "dependencies": {}
 }
