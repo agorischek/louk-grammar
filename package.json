@@ -4,7 +4,7 @@
   "description": "Syntax highlighting for Louk",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "generate": "gulp"
   },
   "repository": {
     "type": "git",
@@ -22,17 +22,17 @@
   "homepage": "https://louk-lang.org",
   "private": true,
   "devDependencies": {
-    "apposite": "0.0.2",
-    "archiver": "^3.1.1",
+    "apposite": "0.0.3",
+    "archiver": "^4.0.1",
     "chai": "^4.2.0",
     "clone": "^2.1.2",
     "del": "^5.1.0",
-    "fs-extra": "^8.1.0",
+    "fs-extra": "^9.0.1",
     "gulp": "^4.0.2",
     "gulp-mocha": "^7.0.2",
     "merge": "^1.2.1",
-    "mocha": "^7.0.1",
-    "multigrain": "^1.0.8"
+    "mocha": "^8.0.1",
+    "multigrain": "^2.0.1"
   },
   "dependencies": {}
 }
