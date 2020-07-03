@@ -59,4 +59,7 @@ typings/
 
 # next.js build output
 .next
-/staging/.DS_Store
+
+staging/
+
+.DS_Store
