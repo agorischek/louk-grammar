@@ -1,7 +1,7 @@
-trigger:
-  - master
+trigger: none
 
-pr: none
+pr:
+  - master
 
 pool:
   vmImage: ubuntu-latest
@@ -23,30 +23,5 @@ steps:
   - task: Npm@1
     inputs:
       command: custom
-      customCommand: build
-    displayName: Build
-
-  - task: Npm@1
-    inputs:
-      command: custom
-      customCommand: test
-    displayName: Run tests
-
-  - script: cd $(Build.BinariesDirectory) && npm pack $(Build.Repository.LocalPath)
-    displayName: Create package
-
-  - task: ArchiveFiles@2
-    inputs:
-      rootFolderOrFile: $(Build.BinariesDirectory)
-      includeRootFolder: false
-      archiveType: zip
-      archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-      replaceExistingArchive: true
-    displayName: Archive package
-
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-      ArtifactName: output
-      publishLocation: Container
-    displayName: Upload package
+      customCommand: generate
+    displayName: Generate grammars

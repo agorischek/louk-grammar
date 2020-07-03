@@ -23,11 +23,5 @@ steps:
   - task: Npm@1
     inputs:
       command: custom
-      customCommand: build
-    displayName: Build
-
-  - task: Npm@1
-    inputs:
-      command: custom
-      customCommand: test
-    displayName: Run tests
+      customCommand: generate
+    displayName: Generate grammars
