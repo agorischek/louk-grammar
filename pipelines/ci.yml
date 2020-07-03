@@ -23,5 +23,5 @@ steps:
   - task: Npm@1
     inputs:
       command: custom
-      customCommand: generate
+      customCommand: run generate
     displayName: Generate grammars
