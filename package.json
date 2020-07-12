@@ -4,7 +4,8 @@
   "description": "Syntax highlighting for Louk",
   "main": "index.js",
   "scripts": {
-    "generate": "gulp"
+    "generate": "gulp",
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,7 @@
   "private": true,
   "devDependencies": {
     "apposite": "0.0.3",
-    "archiver": "^4.0.1",
+    "archiver": "^4.0.2",
     "chai": "^4.2.0",
     "clone": "^2.1.2",
     "del": "^5.1.0",
