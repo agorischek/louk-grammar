@@ -24,7 +24,7 @@
   "private": true,
   "devDependencies": {
     "apposite": "0.0.3",
-    "archiver": "^4.0.2",
+    "archiver": "^5.0.0",
     "chai": "^4.2.0",
     "clone": "^2.1.2",
     "del": "^5.1.0",
