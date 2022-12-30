@@ -30,9 +30,9 @@
     "del": "^5.1.0",
     "fs-extra": "^9.0.1",
     "gulp": "^4.0.2",
-    "gulp-mocha": "^7.0.2",
+    "gulp-mocha": "^8.0.0",
     "merge": "^2.1.1",
-    "mocha": "^8.1.2",
+    "mocha": "^8.4.0",
     "multigrain": "^2.0.1"
   },
   "dependencies": {}
